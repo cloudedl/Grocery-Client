@@ -16,6 +16,15 @@
 5. Incorporate a Map with "Locations"
 6. Ability to view specific orders
 
+## Tech Stack
+-MongoDb
+-BootStrap
+-Mongoose
+-Express
+-React
+-NodeJS
+
+
 
 
 ## User Story<br/>
@@ -38,7 +47,6 @@ As a user, I want to ..<br/>
 -See which recipes are popular<br/>
 -Customize existing recipes<br/>
 -Create my own recipes<br/>
-
 
 ## ERD
 ![ERD](/media/images/ERD.png)
