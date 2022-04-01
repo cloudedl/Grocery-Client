@@ -17,12 +17,12 @@
 6. Ability to view specific orders
 
 ## Tech Stack
--MongoDb
--BootStrap
--Mongoose
--Express
--React
--NodeJS
+-MongoDb <br/>
+-BootStrap <br/>
+-Mongoose <br/>
+-Express <br/>
+-React <br/>
+-NodeJS <br/>
 
 
 
