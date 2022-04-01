@@ -18,7 +18,7 @@
 
 
 
-### User Story<br/>
+## User Story<br/>
 As a user, I want to ..<br/>
 -Add individual items to my cart<br/>
 -Add items by recipe<br/>
@@ -44,26 +44,26 @@ As a user, I want to ..<br/>
 ![ERD](/media/images/ERD.png)
 
 
-### Home
+## Home
 ![home](/media/images/Home.png)
 
-### Welcome
+## Welcome
 ![welcome](/media/images/Welcome.png)
 
-### Recipe Search
+## Recipe Search
 ![recipeSearch](/media/images/recipeSearch.png)
 
-### Recipe Result
+## Recipe Result
 ![recipeResult](/media/images/recipeSearchResult.png)
 
-### Recipe Show
+## Recipe Show
 ![recipeShow](/media/images/recipeShow.png)
 
-### Account
+## Account
 ![accountPage](/media/images/account.png)
 
-### Cart
+## Cart
 ![cart](/media/images/cart.png)
 
-### Stretch
+## Stretch
 ![stretch](/media/images/Stretch.png)
