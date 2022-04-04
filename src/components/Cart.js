@@ -19,7 +19,7 @@ export default function Cart(props) {
 
     const cartItemsDisplay = cartItemsArray.map(item => {
         return (
-            <h4>{item.name}</h4>
+            <h4>{item.name} {item.price}</h4>
         )
     })
 
@@ -31,15 +31,15 @@ export default function Cart(props) {
 
     return (
         <>
-            <header>
-                <h2>This is your shopping cart!</h2>
-            </header>
             <div>
-                {cartItemsDisplay}
+                <header>
+                    <h2>Cart</h2>
+                </header>
+                <div>
+                    {cartItemsDisplay}
+                    {cartTotal.price}
+                </div>
             </div>
-            <aside>
-                {cartTotal.price}
-            </aside>
         </>
     )
 }

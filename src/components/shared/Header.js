@@ -9,6 +9,18 @@ const linkStyle = {
 const authenticatedOptions = (
 	<>
 		<Nav.Item>
+			<Link to={`/recipes/search`} style={linkStyle}>Search recipes</Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Link to={`/groceries/search`} style={linkStyle}>Search groceries</Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Link to={`/cart/view`} style={linkStyle}>View cart</Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Link to={`/cart/checkout`} style={linkStyle}>Checkout</Link>
+		</Nav.Item>
+		<Nav.Item>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
