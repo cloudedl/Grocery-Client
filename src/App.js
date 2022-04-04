@@ -16,6 +16,7 @@ import RecipeSearch from './components/recipes/RecipeSearch'
 import RecipeIndex from './components/recipes/RecipeIndex'
 import CreateRecipe from './components/recipes/CreateRecipe'
 import RecipeShow from './components/recipes/RecipeShow'
+import Cart from './components/Cart'
 
 const App = () => {
 
@@ -90,13 +91,13 @@ const App = () => {
 						//</RequireAuth>
 					}
 				/>
-					<Route
+				<Route
 				  	path='/recipe/new'
 					element={
 						// commented out auth
 						<RequireAuth user={user}>
 							<CreateRecipe msgAlert={msgAlert} user={user}/>
-						 </RequireAuth> 
+						 </RequireAuth>
 					}
 				/>
 				<Route
@@ -108,6 +109,30 @@ const App = () => {
 						//</RequireAuth>
 				}
 				/>
+				<Route 
+					path='/cart/view'
+					element={
+						<Cart />
+					}
+				/>
+
+				{/* IMPORT GROCERIES */}
+				{/* Route to groceries search */}
+				{/* <Route 
+					path='/groceries'
+					element={
+						<GroceriesSearch />
+					}
+				/> */}
+
+				{/* IMPORT GROCERIES */}
+				{/* Route to groceries search results */}
+				{/* <Route 
+					path='/groceries/results'
+					element={
+						<GroceriesIndex />
+					}
+				/> */}
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
