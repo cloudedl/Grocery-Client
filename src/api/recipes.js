@@ -7,7 +7,9 @@ import axios from 'axios'
 
 export const searchRecipe = (query) => {
     const searchUrl = 'https://api.spoonacular.com/recipes/complexSearch?query='
+
     const apiKey = 'ENTER API KEY HERE'
+
 
     const config = {
         method: 'get',
@@ -17,6 +19,7 @@ export const searchRecipe = (query) => {
 }
 
 // Show Function -> GETs recipe information from external api
+
 
 // spoonId === spoonacular's id for the recipe
 
@@ -32,5 +35,20 @@ export const showRecipe = (spoonId) => {
 }
 
 // Price Function -> GETs recipe price breakdown for each ingredient from external api
+
+
+// POST -> create function
+export const createRecipe = (user, newRecipe) => {
+    console.log('user', user)
+    console.log('this is newRecipe', newRecipe)
+    return axios({
+        url: `${apiUrl}/recipes`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { recipe: newRecipe }
+    })
+}
 
 
