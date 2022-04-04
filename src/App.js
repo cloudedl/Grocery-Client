@@ -73,7 +73,7 @@ const App = () => {
 		  		<Route
 				  	path='/recipe'
 					element={
-						// commented out auth for development
+						// commented out auth
 						//<RequireAuth user={user}>
 							<RecipeSearch msgAlert={msgAlert} user={user}/>
 						//</RequireAuth>
@@ -82,7 +82,7 @@ const App = () => {
 				<Route
 				  	path='/recipe/results'
 					element={
-						// commented out auth for development
+						// commented out auth
 						//<RequireAuth user={user}>
 							<RecipeIndex msgAlert={msgAlert} user={user}/>
 						//</RequireAuth>
