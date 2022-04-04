@@ -60,7 +60,7 @@ export const ingPrice = (spoonId) => {
         method: 'get',
         url: `${searchUrl}`
     }
-
+ 
     return axios(config)
 
 }
