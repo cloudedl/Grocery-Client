@@ -39,7 +39,18 @@ const alwaysOptions = (
 				Home
 			</Link>
 		</Nav.Link>
-	</>
+
+<Nav.Link>
+	<Link to='/recipe' style={linkStyle}>
+		Recipe Search 
+	</Link>
+</Nav.Link>
+<Nav.Link>
+	<Link to='/recipe/new' style={linkStyle}>
+		Create Recipe
+	</Link>
+</Nav.Link>
+</>
 )
 
 const Header = ({ user }) => (

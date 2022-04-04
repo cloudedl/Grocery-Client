@@ -14,6 +14,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import RecipeSearch from './components/recipes/RecipeSearch'
 import RecipeIndex from './components/recipes/RecipeIndex'
+import CreateRecipe from './components/recipes/CreateRecipe'
 
 const App = () => {
 
@@ -86,6 +87,15 @@ const App = () => {
 						//<RequireAuth user={user}>
 							<RecipeIndex msgAlert={msgAlert} user={user}/>
 						//</RequireAuth>
+					}
+				/>
+					<Route
+				  	path='/recipe/new'
+					element={
+						// commented out auth
+						<RequireAuth user={user}>
+							<CreateRecipe msgAlert={msgAlert} user={user}/>
+						 </RequireAuth> 
 					}
 				/>
 				</Routes>
