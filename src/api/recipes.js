@@ -19,6 +19,19 @@ export const searchRecipe = (query) => {
     return axios(config)
 }
 
+// RANDOM FUNCTION -> Gets Random limited result of recipes
+export const randomRecipe = () => {
+    const apiKey = env.API_KEY
+    
+    const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
+
+    const config = {
+        method: 'get', 
+        url: `${searchUrl}&apiKey=${apiKey}`
+    }
+    return axios(config)
+}
+
 // Show Function -> GETs recipe information from external api
 
 
