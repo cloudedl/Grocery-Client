@@ -1,5 +1,6 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
+import env from "react-dotenv"
 
 
 
@@ -8,7 +9,7 @@ import axios from 'axios'
 export const searchRecipe = (query) => {
     const searchUrl = 'https://api.spoonacular.com/recipes/complexSearch?query='
 
-    const apiKey = 'ENTER API KEY HERE'
+    const apiKey = env.API_KEY
 
 
     const config = {
@@ -24,7 +25,7 @@ export const searchRecipe = (query) => {
 // spoonId === spoonacular's id for the recipe
 
 export const showRecipe = (spoonId) => {
-    const apiKey = 'ENTER API KEY HERE'
+    const apiKey = env.API_KEY
     const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
 
     const config = {
