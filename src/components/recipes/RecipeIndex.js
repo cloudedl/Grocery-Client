@@ -40,6 +40,9 @@ const RecipeIndex = (props) => {
                 })})
     }, [])
 
+
+
+
     if (!results) {
         return <p>loading...</p>
     } else if (results.length === 0) {
@@ -52,11 +55,11 @@ const RecipeIndex = (props) => {
         
         recipeCards = results.map(result => (
             <Card key={result.id} style={{ width: '30%' }} className="m-2">
-                <Card.Header>{result.id}</Card.Header>
+                <Card.Header>{result.title}</Card.Header>
                 <Card.Body>
-                    {/* <Card.Text>
-                        <Link to={}>View {}</Link>
-                    </Card.Text> */}
+                    <Card.Text>
+                        <Link to={`/recipe/${result.id}`}>View Recipe Details</Link>
+                    </Card.Text>
                 </Card.Body>
             </Card>
         ))
