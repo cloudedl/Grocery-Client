@@ -1,6 +1,6 @@
 import Recipe from './Recipe'
 import Cart from './Cart'
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { randomRecipe } from '../api/recipes'
 import { useEffect, useState } from 'react'
@@ -40,13 +40,32 @@ const Home = (props) => {
     if (recipes.length > 0) {
         console.log('is this being hit')
         recipeCards = recipes.map(recipes => (
-            <Card key={recipes.id} style={{ width: '30%' }} className="m-2">
-                <Card.Header>{recipes.title}</Card.Header>
+            <Card 
+            bg={"light"}
+            border = "dark" 
+            key={recipes.id} 
+            style={{ width: '20%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Times New Roman" }} 
+            className="m-2">
+                <Card.Img 
+                style = {{rounded : true}} 
+                border = "dark"
+                variant = 'top' 
+                src ={ `${recipes.image}`}/>
                 <Card.Body>
-                    <Card.Text>
-                        <Link to={`/recipe/${recipes.id}`}>View Recipe Details</Link>
-                    </Card.Text>
+                <Card.Title style={{textAlign : "center"}}>{recipes.title}</Card.Title>
                 </Card.Body>
+                <Card.Footer>
+                    <Card.Text>
+                    <div className="d-grid gap-2">
+                        <Button variant ="primary" size = "sm">
+                        <Link style={{color : "white"}} to={`/recipe/${recipes.id}`}>View Recipe</Link>
+                        </Button>
+                     </div>   
+                    </Card.Text>
+                    </Card.Footer>
+                
             </Card>
         ))
     }
