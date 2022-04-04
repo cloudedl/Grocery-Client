@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 import { searchRecipe } from '../../api/recipes'
 import {CreateRecipe} from './/CreateRecipe'
@@ -54,20 +54,40 @@ const RecipeIndex = (props) => {
     if (results.length > 0) {
         
         recipeCards = results.map(result => (
-            <Card key={result.id} style={{ width: '30%' }} className="m-2">
-                <Card.Header>{result.title}</Card.Header>
+            <Card 
+            bg={"light"}
+            border = "dark" 
+            key={result.id} 
+            style={{ width: '20%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Times New Roman" }} 
+            className="m-2">
+                <Card.Img 
+                style = {{rounded : true}} 
+                border = "dark"
+                variant = 'top' 
+                src ={ `${result.image}`}/>
                 <Card.Body>
-                    <Card.Text>
-                        <Link to={`/recipe/${result.id}`}>View Recipe Details</Link>
-                    </Card.Text>
+                <Card.Title style={{textAlign : "center"}}>{result.title}</Card.Title>
                 </Card.Body>
+                <Card.Footer>
+                    <Card.Text>
+                    <div className="d-grid gap-2">
+                        <Button variant ="primary" size = "sm">
+                        <Link style={{color : "white"}} to={`/recipe/${result.id}`}>View Recipe</Link>
+                        </Button>
+                     </div>   
+                    </Card.Text>
+                    </Card.Footer>
+                
             </Card>
+            
         ))
     }
 
     return (
         <>
-            <h3> Search Results: {state.query.recipe}</h3>
+            <h3 style={{textAlign : "center", fontFamily: "Times New Roman"}}> Showing results for: {state.query.recipe}</h3>
             <div style={cardContainerLayout}>
                 {recipeCards}
                 
