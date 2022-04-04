@@ -12,6 +12,8 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import RecipeSearch from './components/recipes/RecipeSearch'
+import RecipeIndex from './components/recipes/RecipeIndex'
 
 const App = () => {
 
@@ -53,21 +55,39 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
+				<Route
+					path='/sign-out'
+					element={
+					<RequireAuth user={user}>
+						<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+					</RequireAuth>
+					}
+				/>
+				<Route
+					path='/change-password'
+					element={
+					<RequireAuth user={user}>
+						<ChangePassword msgAlert={msgAlert} user={user} />
+					</RequireAuth>}
+				/>
+		  		<Route
+				  	path='/recipe'
+					element={
+						// commented out auth
+						//<RequireAuth user={user}>
+							<RecipeSearch msgAlert={msgAlert} user={user}/>
+						//</RequireAuth>
+					}
+				/>
+				<Route
+				  	path='/recipe/results'
+					element={
+						// commented out auth
+						//<RequireAuth user={user}>
+							<RecipeIndex msgAlert={msgAlert} user={user}/>
+						//</RequireAuth>
+					}
+				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
