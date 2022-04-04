@@ -4,10 +4,10 @@ import env from "react-dotenv"
 
 
 
-// Search Recipe Function -> GETs query results from external api
+// Search Grocery Function -> GETs query results from external api
 
-export const searchRecipe = (query) => {
-    const searchUrl = 'https://api.spoonacular.com/recipes/complexSearch?query='
+export const searchGrocery = (query) => {
+    const searchUrl = 'https://api.spoonacular.com/food/products/search?query='
 
     const apiKey = env.API_KEY
 
@@ -19,10 +19,10 @@ export const searchRecipe = (query) => {
 }
 
 // RANDOM FUNCTION -> Gets Random limited result of recipes
-export const randomRecipe = () => {
+export const randomGrocery = () => {
     const apiKey = env.API_KEY
     
-    const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
+    const searchUrl = 'https://api.spoonacular.com/food/products/random?number=10'
 
     const config = {
         method: 'get', 
@@ -34,9 +34,9 @@ export const randomRecipe = () => {
 // Show Function -> GETs recipe information from external api
 
 
-// spoonId === spoonacular's id for the recipe
+// spoonId === spoonacular's id for the grocery
 
-export const showRecipe = (spoonId) => {
+export const showGrocery = (spoonId) => {
     const apiKey = env.API_KEY
     const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
 
@@ -63,5 +63,3 @@ export const createRecipe = (user, newRecipe) => {
         data: { recipe: newRecipe }
     })
 }
-
-

@@ -9,7 +9,7 @@ const linkStyle = {
 const authenticatedOptions = (
 	<>
 		<Nav.Link>
-			<Link to={`/groceries/search`} style={linkStyle}>Search groceries</Link>
+			<Link to={`/grocery`} style={linkStyle}>Search groceries</Link>
 		</Nav.Link>
 		<Nav.Link>
 			<Link to={`/cart/view`} style={linkStyle}>View cart</Link>
