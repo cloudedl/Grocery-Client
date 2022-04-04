@@ -15,6 +15,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import RecipeSearch from './components/recipes/RecipeSearch'
 import RecipeIndex from './components/recipes/RecipeIndex'
 import CreateRecipe from './components/recipes/CreateRecipe'
+import RecipeShow from './components/recipes/RecipeShow'
 
 const App = () => {
 
@@ -97,6 +98,15 @@ const App = () => {
 							<CreateRecipe msgAlert={msgAlert} user={user}/>
 						 </RequireAuth> 
 					}
+				/>
+				<Route
+					path='/recipe/:id'
+					element={
+						//commented out auth
+						//<RequireAuth user={user}>
+							<RecipeShow msgAlert={msgAlert} user={user} />
+						//</RequireAuth>
+				}
 				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
