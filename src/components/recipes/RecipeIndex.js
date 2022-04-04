@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Card } from 'react-bootstrap'
-import { Link,useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { searchRecipe } from '../../api/recipes'
+import {CreateRecipe} from './/CreateRecipe'
 
 
 // styling object for recipe cards
@@ -15,7 +16,8 @@ const RecipeIndex = (props) => {
     // retrieves object data from RecipeSearch
     const { state } = useLocation()
     const [results,setResults] = useState(null)
-    const { msgAlert} = props
+    const { recipe, msgAlert} = props
+    console.log(recipe)
 
     useEffect(() => {
         searchRecipe(state.query.recipe)
@@ -47,6 +49,7 @@ const RecipeIndex = (props) => {
     let recipeCards
 
     if (results.length > 0) {
+        
         recipeCards = results.map(result => (
             <Card key={result.id} style={{ width: '30%' }} className="m-2">
                 <Card.Header>{result.id}</Card.Header>
