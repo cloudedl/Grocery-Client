@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 export default function Cart(props) {
-
+    // example array
     const cartItemsArray = [
         {
             name: 'tomato',
