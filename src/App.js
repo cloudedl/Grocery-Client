@@ -17,6 +17,8 @@ import RecipeIndex from './components/recipes/RecipeIndex'
 import CreateRecipe from './components/recipes/CreateRecipe'
 import RecipeShow from './components/recipes/RecipeShow'
 import Cart from './components/Cart'
+import GrocerySearch from './components/groceries/GrocerySearch'
+import GroceryIndex from './components/groceries/GroceryIndex'
 
 const App = () => {
 
@@ -112,27 +114,23 @@ const App = () => {
 				<Route 
 					path='/cart/view'
 					element={
-						<Cart />
+						<Cart msgAlert={msgAlert} user={user}/>
 					}
 				/>
 
-				{/* IMPORT GROCERIES */}
-				{/* Route to groceries search */}
-				{/* <Route 
-					path='/groceries'
+				<Route 
+					path='/grocery'
 					element={
-						<GroceriesSearch />
+						<GrocerySearch msgAlert={msgAlert} user={user}/>
 					}
-				/> */}
+				/>
 
-				{/* IMPORT GROCERIES */}
-				{/* Route to groceries search results */}
-				{/* <Route 
-					path='/groceries/results'
+				<Route 
+					path='/grocery/results'
 					element={
-						<GroceriesIndex />
+						<GroceryIndex msgAlert={msgAlert} user={user}/>
 					}
-				/> */}
+				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
