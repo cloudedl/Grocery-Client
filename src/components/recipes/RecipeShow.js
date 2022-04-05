@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showRecipe,ingPrice } from '../../api/recipes'
-import { Form, Container, Button, Card } from 'react-bootstrap'
+import { Form, Container, Button, Card, Link, Row, Col } from 'react-bootstrap'
 
 
 
@@ -15,7 +15,8 @@ const RecipeShow = (props) => {
     const [ings,setIngs] = useState(null)
     const { user,msgAlert} = props
     const {id} = useParams()
-    console.log(recipe, "these are the ingredients", ings)
+    console.log("recipe", recipe, "this is the total cost")
+   
     useEffect(() => {
         showRecipe(id)
             .then(res => {
@@ -60,9 +61,11 @@ const RecipeShow = (props) => {
         //current navigate just to test handleSubmit
         navigate('/recipe')
     }
+   
     let ingArray = ings.ingredients
     console.log('this is ingArray', ingArray)
     const recipeCard = ingArray.map( ingredient=> ( 
+
         <Card 
             bg={"light"}
             border = "dark" 
@@ -71,21 +74,20 @@ const RecipeShow = (props) => {
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Times New Roman" }} 
             className="m-2">
-                <Card.Img 
-                style = {{rounded : true}} 
-                border = "dark"
-                variant = 'top' 
-                src ={ `${ingredient.image}`}/>
+
                 <Card.Body>
-                <Card.Title style={{textAlign : "center"}}>{ingredient.name}</Card.Title>
+                <Card.Title>{ingredient.amount.us.value} {ingredient.amount.us.unit} {ingredient.name}</Card.Title>
+                <p>Price: ${(ingredient.price / 100).toFixed(2)}</p>
                 </Card.Body>
                 <Card.Footer>
                     <Card.Text>
-                    {/* <div className="d-grid gap-2">
-                        <Button variant ="primary" size = "sm">
-                        <Link style={{color : "white"}} to={`/recipe/${result.id}`}>View Recipe</Link>
-                        </Button>
-                     </div>    */}
+                    
+                    <div className="d-grid gap-2">
+                    <Form onSubmit={handleSubmit}>
+                     <Button fluid ="true" type='submit'>Add Item to Cart</Button>
+                     </Form>
+                       
+                     </div>   
                     </Card.Text>
                     </Card.Footer>
                 
@@ -98,12 +100,20 @@ const RecipeShow = (props) => {
     return (
         <>
 
-        
-            <h3>{recipe.title}</h3>
+            
+            <h3 style ={{textAlign : "center"}}>{recipe.title}</h3>
+            <Container>
+                <Row>
+                    <Col><p>Instructions: {recipe.instructions}</p></Col>
+                     <Col><img src= {`${recipe.image}`}></img></Col>
+                </Row>  
+            </Container>
             <div>{recipeCard}</div>
+          
             <Container className='justify-content-center'>
+                
             <Form onSubmit={handleSubmit}>
-            <Button type='submit'>Add to Cart</Button>
+            <Button type='submit'>Add Recipe to Cart</Button>
             </Form>
         </Container>
         </>
