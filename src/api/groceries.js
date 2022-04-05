@@ -13,8 +13,9 @@ export const searchGrocery = (query) => {
 
     const config = {
         method: 'get',
-        url: `${searchUrl+query}&addRecipeInformation=true&number=10&apiKey=${apiKey}`
+        url: `${searchUrl+query}&number=10&apiKey=${apiKey}`
     }
+    console.log('this is config.url', config.url)
     return axios(config)
 }
 
@@ -22,7 +23,7 @@ export const searchGrocery = (query) => {
 export const randomGrocery = () => {
     const apiKey = env.API_KEY
     
-    const searchUrl = 'https://api.spoonacular.com/food/products/random?number=10'
+    const searchUrl = 'https://api.spoonacular.com/food/ingredients/random?number=10'
 
     const config = {
         method: 'get', 
