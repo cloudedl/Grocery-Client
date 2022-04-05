@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showRecipe,ingPrice } from '../../api/recipes'
-import { Form, Container, Button } from 'react-bootstrap'
+import { Form, Container, Button, Card } from 'react-bootstrap'
 
 
 
@@ -15,7 +15,7 @@ const RecipeShow = (props) => {
     const [ings,setIngs] = useState(null)
     const { user,msgAlert} = props
     const {id} = useParams()
-
+    console.log(recipe, "these are the ingredients", ings)
     useEffect(() => {
         showRecipe(id)
             .then(res => {
@@ -60,10 +60,47 @@ const RecipeShow = (props) => {
         //current navigate just to test handleSubmit
         navigate('/recipe')
     }
+    let ingArray = ings.ingredients
+    console.log('this is ingArray', ingArray)
+    const recipeCard = ingArray.map( ingredient=> ( 
+        <Card 
+            bg={"light"}
+            border = "dark" 
+            key={ingredient.id} 
+            style={{ width: '20%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Times New Roman" }} 
+            className="m-2">
+                <Card.Img 
+                style = {{rounded : true}} 
+                border = "dark"
+                variant = 'top' 
+                src ={ `${ingredient.image}`}/>
+                <Card.Body>
+                <Card.Title style={{textAlign : "center"}}>{ingredient.name}</Card.Title>
+                </Card.Body>
+                <Card.Footer>
+                    <Card.Text>
+                    {/* <div className="d-grid gap-2">
+                        <Button variant ="primary" size = "sm">
+                        <Link style={{color : "white"}} to={`/recipe/${result.id}`}>View Recipe</Link>
+                        </Button>
+                     </div>    */}
+                    </Card.Text>
+                    </Card.Footer>
+                
+            </Card>
+
+    )
+
+    )
 
     return (
         <>
+
+        
             <h3>{recipe.title}</h3>
+            <div>{recipeCard}</div>
             <Container className='justify-content-center'>
             <Form onSubmit={handleSubmit}>
             <Button type='submit'>Add to Cart</Button>
