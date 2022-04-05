@@ -14,15 +14,15 @@ const cardContainerLayout = {
 const GroceryIndex = (props) => {
     // retrieves object data from RecipeSearch
     const { state } = useLocation()
-    const [results,setResults] = useState(null)
+    const [products,setResults] = useState(null)
     const { grocery, msgAlert} = props
-    console.log(grocery)
+    console.log('this is grocery', grocery)
 
     useEffect(() => {
         searchGrocery(state.query.grocery)
             .then(res => {
-                setResults(res.data.results)
-                console.log('apiresponse',results)
+                setResults(res.data.products)
+                console.log('apiresponse',products)
 
             })
             .then(() =>
@@ -42,21 +42,21 @@ const GroceryIndex = (props) => {
 
 
 
-    if (!results) {
+    if (!products) {
         return <p>loading...</p>
-    } else if (results.length === 0) {
+    } else if (products.length === 0) {
         return <p>No grocery found</p>
     }
 
     let groceryCards
 
-    if (results.length > 0) {
+    if (products.length > 0) {
         
-        groceryCards = results.map(result => (
+        groceryCards = products.map(product => (
             <Card 
             bg={"light"}
             border = "dark" 
-            key={result.id} 
+            key={product.id} 
             style={{ width: '20%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Times New Roman" }} 
@@ -65,15 +65,15 @@ const GroceryIndex = (props) => {
                 style = {{rounded : true}} 
                 border = "dark"
                 variant = 'top' 
-                src ={ `${result.image}`}/>
+                src ={ `${product.image}`}/>
                 <Card.Body>
-                <Card.Title style={{textAlign : "center"}}>{result.title}</Card.Title>
+                <Card.Title style={{textAlign : "center"}}>{product.title}</Card.Title>
                 </Card.Body>
                 <Card.Footer>
                     <Card.Text>
                     <div className="d-grid gap-2">
                         <Button variant ="primary" size = "sm">
-                        <Link style={{color : "white"}} to={`/grocery/${result.id}`}>View Grocery</Link>
+                        <Link style={{color : "white"}} to={`/grocery/${product.id}`}>View Grocery</Link>
                         </Button>
                      </div>   
                     </Card.Text>
