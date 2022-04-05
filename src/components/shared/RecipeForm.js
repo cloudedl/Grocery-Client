@@ -4,7 +4,7 @@ import { Form, Container, Button } from 'react-bootstrap'
 const RecipeForm = (props) => {
     
     const {recipe, handleChange, handleSubmit, heading} = props
-    console.log(recipe)
+        console.log(recipe)
     return (
         <Container className="justify-content-center">
             <h3>{heading}</h3>
@@ -22,9 +22,19 @@ const RecipeForm = (props) => {
                     value= {recipe.description}
                     name='description'
                     onChange={handleChange}
+                />   
+                <Form.Label>Instructions</Form.Label>
+                <Form.Control 
+                    placeholder="Type the steps to make your recipe"
+                    value= {recipe.instructions}
+                    name='instructions'
+                    onChange={handleChange}
                 />
+            
+                
                 <Button type='submit'>Submit</Button>
             </Form>
+            
         </Container>
     )
 }
