@@ -39,7 +39,7 @@ export const randomGrocery = () => {
 
 export const showGrocery = (spoonId) => {
     const apiKey = env.API_KEY
-    const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
+    const searchUrl = `https://api.spoonacular.com/food/products/${spoonId}?apiKey=${apiKey}`
 
     const config = {
         method: 'get',
