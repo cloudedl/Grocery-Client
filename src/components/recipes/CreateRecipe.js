@@ -16,7 +16,7 @@ const CreateRecipe = (props) => {
     const navigate = useNavigate()
     // we'll need two states
     const [recipe, setRecipe] = useState({name: '', description: '', instructions: ''})
-    const [ingredient, setIngredient] = useState({ingName: '' , ingPrice: ''})
+    const [ingredient, setIngredient] = useState({ingredient: ''})
     console.log('recipe in create', recipe)
   
     const handleChange = (e) => {
@@ -43,6 +43,7 @@ const CreateRecipe = (props) => {
         createRecipe(user, recipe)
             // if create is successful, we should navigate to the show page
             .then(res => {navigate(`/recipes/${res.data.recipe.id}`)})
+            
             // then we send a success message
             .then(() =>
                 msgAlert({
@@ -82,8 +83,9 @@ const CreateRecipe = (props) => {
         // e === event
         e.preventDefault()
 
-        searchGrocery(ingredient.ingName)
+        searchGrocery(ingredient.ingredient)
             // if create is successful, onionsage
+            .then((res) => {console.log('what is res.data', res.data)})
             .then(() =>
                 msgAlert({
                     heading: ' Added! Success!',
@@ -112,7 +114,7 @@ const CreateRecipe = (props) => {
             <Form.Label>Ingredient</Form.Label>
                     <Form.Control 
                         placeholder="Add an ingredient"
-                        value= {ingredient.ingName}
+                        value= {ingredient.name}
                         name='ingredient'
                         onChange={handleIngChange}
             />
