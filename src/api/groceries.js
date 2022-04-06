@@ -48,8 +48,15 @@ export const showGrocery = (spoonId) => {
     return axios(config)
 }
 
-// Price Function -> GETs recipe price breakdown for each ingredient from external api
-
+export const searchIng = (query) => {
+    const apiKey = env.API_KEY
+    const searchUrl = `https://api.spoonacular.com/food/ingredients/search?query=`
+    const config = {
+        method: 'get',
+        url: `${searchUrl+query}&number=10&apiKey=${apiKey}`
+    }
+    return axios(config)
+}
 
 // POST -> create function
 export const createIngredient = (user, newIngredient) => {

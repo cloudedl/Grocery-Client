@@ -3,109 +3,72 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { showGrocery } from '../../api/groceries'
 import { Form, Container, Button, Card } from 'react-bootstrap'
 
-
-
-
-
+// declare component
 const GroceryShow = (props) => {
-
+    // declare variables 
     const navigate = useNavigate()
-    const [grocery,setRecipe] = useState(null)
-    // ings === ingredients
-    // const [ings,setIngs] = useState(null)
+    const [grocery,setGrocery] = useState(null)
     const { user,msgAlert} = props
     const {id} = useParams()
+    // console log to check what object is currently associated with grocery
     console.log(grocery, "this is the grocery")
     useEffect(() => {
         showGrocery(id)
             .then(res => {
-                setRecipe(res.data)
+                setGrocery(res.data)
                 console.log('apiresponse',res.data)
 
             })
             .then(() =>
                 msgAlert({
                     heading: 'Success!',
-                    message: `recipe show page`,
+                    message: `grocery show page`,
                     variant: 'success',
                 }))
             .catch(()=> {
                 msgAlert({
                     heading: 'Oh No!',
-                    message: 'Issue with showing recipe',
-                    variant: 'danger',
-                })})
-        ingPrice(id)
-            .then(res => {
-                setIngs(res.data)
-                console.log('apiresponse',res.data)
-
-            })
-            .catch(()=> {
-                msgAlert({
-                    heading: 'Oh No!',
-                    message: 'Issue with showing recipe',
+                    message: 'Issue with showing grocery',
                     variant: 'danger',
                 })})
     }, [])
-
-
-
-    if (!recipe) {
-        return <p>loading...</p>
-    } 
+    
+    // function to handle submit button
     const handleSubmit = (e) => {
         //e === event
         e.preventDefault()
         //current navigate just to test handleSubmit
-        navigate('/recipe')
+        navigate('/grocery')
     }
-    let ingArray = ings.ingredients
-    console.log('this is ingArray', ingArray)
-    const recipeCard = ingArray.map( ingredient=> ( 
-        <Card 
-            bg={"light"}
-            border = "dark" 
-            key={ingredient.id} 
-            style={{ width: '20%', 
-            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-            fontFamily: "Times New Roman" }} 
-            className="m-2">
-                <Card.Img 
-                style = {{rounded : true}} 
-                border = "dark"
-                variant = 'top' 
-                src ={ `${ingredient.image}`}/>
-                <Card.Body>
-                <Card.Title style={{textAlign : "center"}}>{ingredient.name}</Card.Title>
-                </Card.Body>
-                <Card.Footer>
-                    <Card.Text>
-                    {/* <div className="d-grid gap-2">
-                        <Button variant ="primary" size = "sm">
-                        <Link style={{color : "white"}} to={`/recipe/${result.id}`}>View Recipe</Link>
-                        </Button>
-                     </div>    */}
-                    </Card.Text>
-                    </Card.Footer>
-                
-            </Card>
 
-    ))
+    // something to show while grocery is loading
+    if (!grocery) {
+        return <p>loading...</p>
+    } 
 
     return (
         <>
-
-        
-            <h3>{recipe.title}</h3>
-            <div>{recipeCard}</div>
-            <Container className='justify-content-center'>
-            <Form onSubmit={handleSubmit}>
-            <Button type='submit'>Add to Cart</Button>
-            </Form>
-        </Container>
+            <img src={grocery.image}/>
+            <h3>{grocery.title}</h3>
+            <div>{grocery.generatedText}</div>
+            <aside>Price: ${grocery.price}</aside>
+            <Container
+            className='justify-content-center'>
+                <Form onSubmit={handleSubmit}>
+                    <input 
+                        type='hidden' name="groceryName" 
+                        value={grocery.title}    
+                    />
+                    <input 
+                        type='hidden'
+                        name='groceryPrice'
+                        value={grocery.price}
+                    />
+                    <Button type='submit'>Add to Cart</Button>
+                </Form>
+            </Container>
         </>
     )
 }
 
-export default RecipeShow
+export default GroceryShow
