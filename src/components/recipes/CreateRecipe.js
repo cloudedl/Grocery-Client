@@ -5,7 +5,7 @@ import RecipeForm from '../shared/RecipeForm'
 import { createRecipeFailure } from '../shared/AutoDismissAlert/messages'
 import { createRecipeSuccess } from '../shared/AutoDismissAlert/messages'
 import { Form, Container, Button } from 'react-bootstrap'
-import { searchIng, showIng } from '../../api/groceries'
+import { searchIng, showIng, createIngredient } from '../../api/groceries'
 
 // create pet renders a form and calls createPet function
 // maybe redirect(navigate) to the new pet show page
@@ -16,7 +16,8 @@ const CreateRecipe = (props) => {
     const navigate = useNavigate()
     // we'll need two states
     const [recipe, setRecipe] = useState({name: '', description: '', instructions: ''})
-    const [ingredient, setIngredient] = useState({ingredient: '', amount: ''})
+    const [ingredient, setIngredient] = useState({ingredient: '', price: '', amount: '' })
+    const [ingredientArr, setingredientArr] = useState(null)
     // console.log('recipe in create', recipe)
   
     const handleChange = (e) => {
@@ -82,14 +83,22 @@ const CreateRecipe = (props) => {
     const handleIngSubmit = (e) => {
         // e === event
         e.preventDefault()
-        let data 
+        let searchData 
+        let ingredientData
+        // const {name, amount } = ingredientData
+        // const { value } = ingredientData.estimatedCost
+        
+
         searchIng(ingredient.ingredient)
             // if create is successful, onionsage
-            .then((res) => {data = res.data})
-            .then(() => {console.log('what is data before 2nd api call', data.results[0])})
-            .then(() => {showIng(data.results[0].id, ingredient.amount)
-                .then((res) => {console.log('what is data', data, 'and what is res.data', res)})
+            .then((res) => {searchData = res.data})
+            .then(() => {console.log('what is data before 2nd api call', searchData.results[0])})
+            .then(() => {showIng(searchData.results[0].id, ingredient.amount)
+                .then((res) => {ingredientData = res.data})
+                .then((res) => {console.log('what is data', searchData, 'and what is res.data', ingredientData, 'what is ingredientState', ingredient, 'what is ingredientdata.estimatedcost.value', ingredientData.estimatedCost.value )})
                 .catch(console.error)})
+            .then(() => setIngredient( {ingredient: ingredientData.name, price: ingredientData.estimatedCost.value, amount: ingredientData.amount}))
+            .then(() => {console.log('what is ingredint after updating state', ingredient)})
             .then(() =>
                 msgAlert({
                     heading: ' Added! Success!',
