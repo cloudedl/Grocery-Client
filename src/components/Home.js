@@ -79,7 +79,7 @@ const Home = (props) => {
 
 	return (
 		<>
-			<h2>'companynamehere'</h2>
+			<h2>NutriCart</h2>
 			<strong><em>A revolutionary way to shop</em></strong>
 
 			

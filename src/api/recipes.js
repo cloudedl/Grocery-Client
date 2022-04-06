@@ -31,9 +31,9 @@ export const randomRecipe = () => {
 // Show Function -> GETs recipe information from external api
 // spoonId === spoonacular's id for the recipe
 export const showRecipe = (spoonId) => {
-
-    const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
+    
     const apiKey = env.API_KEY
+    const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
     const config = {
         method: 'get',
         url: `${searchUrl}`
@@ -44,8 +44,8 @@ export const showRecipe = (spoonId) => {
 // Price Function -> GETs recipe price breakdown for each ingredient from external api
 // spoonId === spoonacular's id for the recipe
 export const ingPrice = (spoonId) => {
-    const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/priceBreakdownWidget.json?apiKey=${apiKey}`
     const apiKey = env.API_KEY
+    const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/priceBreakdownWidget.json?apiKey=${apiKey}`
 
     const config = {
         method: 'get',
