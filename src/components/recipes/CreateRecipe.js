@@ -87,9 +87,9 @@ const CreateRecipe = (props) => {
             // if create is successful, onionsage
             .then((res) => {data = res.data})
             .then(() => {console.log('what is data before 2nd api call', data.results[0])})
-            .then(() => {showIng(data.results[0].id, ingredient.amount)})
-                // .then((res) => {console.log('what is data', data, 'and what is res.data', res)})
-                // .catch(console.error)
+            .then(() => {showIng(data.results[0].id, ingredient.amount)
+                .then((res) => {console.log('what is data', data, 'and what is res.data', res)})
+                .catch(console.error)})
             .then(() =>
                 msgAlert({
                     heading: ' Added! Success!',
