@@ -2,15 +2,13 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 import env from "react-dotenv"
 
-
-
 // Search Recipe Function -> GETs query results from external api
-
 export const searchRecipe = (query) => {
+    // declare base of url to be referenced later
     const searchUrl = 'https://api.spoonacular.com/recipes/complexSearch?query='
-
+    // declare api key
     const apiKey = env.API_KEY
-
+    // set terms for axios
     const config = {
         method: 'get',
         url: `${searchUrl+query}&addRecipeInformation=true&number=10&apiKey=${apiKey}`
@@ -20,10 +18,9 @@ export const searchRecipe = (query) => {
 
 // RANDOM FUNCTION -> Gets Random limited result of recipes
 export const randomRecipe = () => {
-    const apiKey = env.API_KEY
-    
-    const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
 
+    const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
+    const apiKey = env.API_KEY
     const config = {
         method: 'get', 
         url: `${searchUrl}&apiKey=${apiKey}`
@@ -32,14 +29,11 @@ export const randomRecipe = () => {
 }
 
 // Show Function -> GETs recipe information from external api
-
-
 // spoonId === spoonacular's id for the recipe
-
 export const showRecipe = (spoonId) => {
-    const apiKey = env.API_KEY
-    const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
 
+    const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
+    const apiKey = env.API_KEY
     const config = {
         method: 'get',
         url: `${searchUrl}`
@@ -48,12 +42,10 @@ export const showRecipe = (spoonId) => {
 }
 
 // Price Function -> GETs recipe price breakdown for each ingredient from external api
-
 // spoonId === spoonacular's id for the recipe
-
 export const ingPrice = (spoonId) => {
-    const apiKey = env.API_KEY
     const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/priceBreakdownWidget.json?apiKey=${apiKey}`
+    const apiKey = env.API_KEY
 
     const config = {
         method: 'get',

@@ -89,7 +89,6 @@ const GroceryIndex = (props) => {
             <h3 style={{textAlign : "center", fontFamily: "Times New Roman"}}> Showing results for: {state.query.grocery}</h3>
             <div style={cardContainerLayout}>
                 {groceryCards}
-                
             </div>
         </>
     )
