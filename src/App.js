@@ -189,6 +189,7 @@ const App = () => {
 					}
 				/>
 				{/* grocery show route */}
+				{/* should be working but non-functional for other group members */}
 				<Route
 					path='/grocery/:id'
 					element={
