@@ -52,8 +52,18 @@ const GroceryShow = (props) => {
             <h3>{grocery.title}</h3>
             <div>{grocery.generatedText}</div>
             <aside>Price: ${grocery.price}</aside>
-            <Container className='justify-content-center'>
+            <Container
+            className='justify-content-center'>
                 <Form onSubmit={handleSubmit}>
+                    <input 
+                        type='hidden' name="groceryName" 
+                        value={grocery.title}    
+                    />
+                    <input 
+                        type='hidden'
+                        name='groceryPrice'
+                        value={grocery.price}
+                    />
                     <Button type='submit'>Add to Cart</Button>
                 </Form>
             </Container>
