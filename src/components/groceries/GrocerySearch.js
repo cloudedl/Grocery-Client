@@ -15,21 +15,17 @@ const GrocerySearch = (props) => {
     const handleChange = (e) => {
         // e === event
         e.persist()
-        
+        // setting the current query to be the previous query + the changes
         setQuery(prevQuery => {
             const name = e.target.name
             let value = e.target.value
             console.log('etarget', e.target)
-
             const updatedValue = { [name]: value }
-
             console.log('prevQuery', prevQuery)
             console.log('updatedValue', updatedValue)
-
             return {...prevQuery, ...updatedValue}
         })
     }
-
 
     // redirects to results page with query string on submit
     const handleSubmit = (e) => {
@@ -37,7 +33,6 @@ const GrocerySearch = (props) => {
         e.preventDefault()
         navigate('/grocery/results',{state:{query}})
     }
-
 
     return (
         <Container className='justify-content-center'>
@@ -50,10 +45,7 @@ const GrocerySearch = (props) => {
             <Button type='submit'>Submit</Button>
             </Form>
         </Container>
-
     )
-
 }
-
 
 export default GrocerySearch
