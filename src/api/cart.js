@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 
-// POST -> add item to items array in cart
+// POST -> add item to itemsArray in cart
 
 export const addItem = (user, newItem) => {
     console.log('user', user)
