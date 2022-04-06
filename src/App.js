@@ -19,6 +19,7 @@ import RecipeShow from './components/recipes/RecipeShow'
 import Cart from './components/Cart'
 import GrocerySearch from './components/groceries/GrocerySearch'
 import GroceryIndex from './components/groceries/GroceryIndex'
+import GroceryShow from './components/groceries/GroceryShow'
 
 const App = () => {
 
@@ -129,6 +130,13 @@ const App = () => {
 					path='/grocery/results'
 					element={
 						<GroceryIndex msgAlert={msgAlert} user={user}/>
+					}
+				/>
+
+				<Route
+					path='/grocery/:id'
+					element={
+						<GroceryShow msgAlert={msgAlert} user={user}/>
 					}
 				/>
 				</Routes>
