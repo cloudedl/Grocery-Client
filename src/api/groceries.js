@@ -74,9 +74,9 @@ export const showIng = (spoonId, amount) => {
 // POST -> create function
 export const createIngredient = (user, newIngredient) => {
     console.log('user', user)
-    console.log('this is newRecipe', newIngredient)
+    console.log('this is newIngredient', newIngredient)
     return axios({
-        url: `${apiUrl}/recipes`,
+        url: `${apiUrl}/ingredients`,
         method: 'POST',
         headers: {
             Authorization: `Token token=${user.token}`

@@ -1,8 +1,8 @@
+// import dependencies
 import React, { useState, useEffect } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 import { searchGrocery } from '../../api/groceries'
-
 
 // styling object for recipe cards
 const cardContainerLayout = {
@@ -17,13 +17,12 @@ const GroceryIndex = (props) => {
     const [products,setResults] = useState(null)
     const { grocery, msgAlert} = props
     console.log('this is grocery', grocery)
-
+    // searching for grocery products
     useEffect(() => {
         searchGrocery(state.query.grocery)
             .then(res => {
                 setResults(res.data.products)
-                console.log('apiresponse',products)
-
+                console.log('api response',products)
             })
             .then(() =>
                 msgAlert({
@@ -36,7 +35,8 @@ const GroceryIndex = (props) => {
                     heading: 'Oh No!',
                     message: 'Issue with search result',
                     variant: 'danger',
-                })})
+                })
+            })
     }, [])
 
 
