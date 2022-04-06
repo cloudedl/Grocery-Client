@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import RecipeForm from '../shared/RecipeForm'
 import { createRecipeFailure } from '../shared/AutoDismissAlert/messages'
 import { createRecipeSuccess } from '../shared/AutoDismissAlert/messages'
+import { Form, Container, Button } from 'react-bootstrap'
+import { searchGrocery } from '../../api/groceries'
 
 // create pet renders a form and calls createPet function
 // maybe redirect(navigate) to the new pet show page
@@ -13,7 +15,8 @@ const CreateRecipe = (props) => {
     console.log('user in create', user)
     const navigate = useNavigate()
     // we'll need two states
-    const [recipe, setRecipe] = useState({name: '', description: ''})
+    const [recipe, setRecipe] = useState({name: '', description: '', instructions: ''})
+    const [ingredient, setIngredient] = useState({ingName: '' , ingPrice: ''})
     console.log('recipe in create', recipe)
   
     const handleChange = (e) => {
@@ -57,13 +60,65 @@ const CreateRecipe = (props) => {
         // console.log('this is the pet', pet)
     }
 
+    const handleIngChange = (e) => {
+        // e === event
+        e.persist()
+
+        setIngredient(prevIngredient => {
+            const name = e.target.name
+            let value = e.target.value
+
+            const updatedValue = { [name]: value }
+
+            console.log('prevIngredient', prevIngredient)
+            console.log('updatedValue', updatedValue)
+            console.log('what is ingredient.name', ingredient.name)
+
+            return {...prevIngredient, ...updatedValue}
+        })
+    }
+
+    const handleIngSubmit = (e) => {
+        // e === event
+        e.preventDefault()
+
+        searchGrocery(ingredient.ingName)
+            // if create is successful, onionsage
+            .then(() =>
+                msgAlert({
+                    heading: ' Added! Success!',
+                    message: createRecipeSuccess,
+                    variant: 'success',
+                }))
+            // if there is an error, we'll send an error message
+            .catch(() =>
+                msgAlert({
+                    heading: 'Oh No!',
+                    message: createRecipeFailure,
+                    variant: 'danger',
+                }))
+        // console.log('this is the pet', pet)
+    }
+
     return (
-        <RecipeForm
-            recipe={recipe}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            heading="Add new Recipe!"
-        />
+        <>
+            <RecipeForm
+                recipe={recipe}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                heading="Add new Recipe!"
+            />
+            <Form onSubmit={handleIngSubmit}>
+            <Form.Label>Ingredient</Form.Label>
+                    <Form.Control 
+                        placeholder="Add an ingredient"
+                        value= {ingredient.ingName}
+                        name='ingredient'
+                        onChange={handleIngChange}
+            />
+            <Button type='submit'>Add to Recipe</Button>
+            </Form>
+        </>
     )
 }
 
