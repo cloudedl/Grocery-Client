@@ -22,16 +22,17 @@ import GroceryIndex from './components/groceries/GroceryIndex'
 import GroceryShow from './components/groceries/GroceryShow'
 
 const App = () => {
+	// destructure from useState
+	const [user, setUser] = useState(null)
+  	const [msgAlerts, setMsgAlerts] = useState([])
+	// console logs for testing
+  	console.log('user in app', user)
+  	console.log('message alerts', msgAlerts)
 
-  const [user, setUser] = useState(null)
-  const [msgAlerts, setMsgAlerts] = useState([])
-
-  console.log('user in app', user)
-  console.log('message alerts', msgAlerts)
-  const clearUser = () => {
-    console.log('clear user ran')
-    setUser(null)
-  }
+  	const clearUser = () => {
+    	console.log('clear user ran')
+    	setUser(null)
+  	}
 
 	const deleteAlert = (id) => {
 		setMsgAlerts((prevState) => {
@@ -44,65 +45,110 @@ const App = () => {
 		setMsgAlerts(() => {
 			return (
 				[{ heading, message, variant, id }]
-      )
+      		)
 		})
 	}
 
-		return (
-			<Fragment>
-				<Header user={user} />
-				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route
-						path='/sign-up'
-						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
-					/>
-					<Route
-						path='/sign-in'
-						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
-					/>
+	return (
+		<Fragment>
+			<Header user={user}/>
+			{/* all routes wrapped in Routes component */}
+			<Routes>
+				{/* home page route */}
+				<Route 
+					path='/' 
+					element={
+						<Home 
+							msgAlert={msgAlert} 
+							user={user}	
+						/>
+					}
+				/>
+				{/* sign up route */}
+				<Route
+					path='/sign-up'
+					element={
+						<SignUp 
+							msgAlert={msgAlert} 
+							setUser={setUser} 
+						/>
+					}
+				/>
+				{/* sign in route */}
+				<Route
+					path='/sign-in'
+					element={
+						<SignIn 
+							msgAlert={msgAlert} 
+							setUser={setUser} 
+						/>
+					}
+				/>
+				{/* sign out route */}
 				<Route
 					path='/sign-out'
 					element={
-					<RequireAuth user={user}>
-						<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-					</RequireAuth>
+						<RequireAuth user={user}>
+							<SignOut 
+								msgAlert={msgAlert} 
+								clearUser={clearUser} 
+								user={user} 	
+							/>
+						</RequireAuth>
 					}
 				/>
+				{/* change password route */}
 				<Route
 					path='/change-password'
 					element={
-					<RequireAuth user={user}>
-						<ChangePassword msgAlert={msgAlert} user={user} />
-					</RequireAuth>}
+						<RequireAuth user={user}>
+							<ChangePassword 
+								msgAlert={msgAlert} 
+								user={user} 
+							/>
+						</RequireAuth>
+					}
 				/>
+				{/* recipe search route */}
 		  		<Route
 				  	path='/recipe'
 					element={
 						// commented out auth
 						//<RequireAuth user={user}>
-							<RecipeSearch msgAlert={msgAlert} user={user}/>
+							<RecipeSearch 
+								msgAlert={msgAlert} 
+								user={user}
+							/>
 						//</RequireAuth>
 					}
 				/>
+				{/* recipe results route */}
 				<Route
 				  	path='/recipe/results'
 					element={
 						// commented out auth
 						//<RequireAuth user={user}>
-							<RecipeIndex msgAlert={msgAlert} user={user}/>
+							<RecipeIndex 
+								msgAlert={msgAlert} 
+								user={user}	
+							/>
 						//</RequireAuth>
 					}
 				/>
+				{/* route to create new recipe */}
 				<Route
 				  	path='/recipe/new'
 					element={
 						// commented out auth
 						<RequireAuth user={user}>
-							<CreateRecipe msgAlert={msgAlert} user={user}/>
-						 </RequireAuth>
+							<CreateRecipe 
+								msgAlert={msgAlert} 
+								user={user}	
+							/>
+						</RequireAuth>
 					}
 				/>
+				{/* recipe show route */}
 				<Route
 					path='/recipe/:id'
 					element={
@@ -110,48 +156,61 @@ const App = () => {
 						//<RequireAuth user={user}>
 							<RecipeShow msgAlert={msgAlert} user={user} />
 						//</RequireAuth>
-				}
+					}
 				/>
+				{/* cart view route */}
 				<Route 
 					path='/cart/view'
 					element={
-						<Cart msgAlert={msgAlert} user={user}/>
+						<Cart 
+							msgAlert={msgAlert} 
+							user={user}	
+						/>
 					}
 				/>
-
+				{/* grocery search route */}
 				<Route 
 					path='/grocery'
 					element={
-						<GrocerySearch msgAlert={msgAlert} user={user}/>
+						<GrocerySearch 
+							msgAlert={msgAlert} 
+							user={user}	
+						/>
 					}
 				/>
-
+				{/* grocery results route */}
 				<Route 
 					path='/grocery/results'
 					element={
-						<GroceryIndex msgAlert={msgAlert} user={user}/>
+						<GroceryIndex 
+							msgAlert={msgAlert} 
+							user={user}	
+						/>
 					}
 				/>
-
+				{/* grocery show route */}
 				<Route
 					path='/grocery/:id'
 					element={
-						<GroceryShow msgAlert={msgAlert} user={user}/>
+						<GroceryShow 
+							msgAlert={msgAlert} 
+							user={user}		
+						/>
 					}
 				/>
-				</Routes>
-				{msgAlerts.map((msgAlert) => (
-					<AutoDismissAlert
-						key={msgAlert.id}
-						heading={msgAlert.heading}
-						variant={msgAlert.variant}
-						message={msgAlert.message}
-						id={msgAlert.id}
-						deleteAlert={deleteAlert}
-					/>
-				))}
-			</Fragment>
-		)
+			</Routes>
+			{msgAlerts.map((msgAlert) => (
+				<AutoDismissAlert
+					key={msgAlert.id}
+					heading={msgAlert.heading}
+					variant={msgAlert.variant}
+					message={msgAlert.message}
+					id={msgAlert.id}
+					deleteAlert={deleteAlert}
+				/>
+			))}
+		</Fragment>
+	)
 }
 
 export default App
