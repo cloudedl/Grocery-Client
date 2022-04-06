@@ -5,19 +5,19 @@ import RecipeForm from '../shared/RecipeForm'
 import { createRecipeFailure } from '../shared/AutoDismissAlert/messages'
 import { createRecipeSuccess } from '../shared/AutoDismissAlert/messages'
 import { Form, Container, Button } from 'react-bootstrap'
-import { searchGrocery } from '../../api/groceries'
+import { searchIng, showIng } from '../../api/groceries'
 
 // create pet renders a form and calls createPet function
 // maybe redirect(navigate) to the new pet show page
 // props we'll need are user, msgAlert
 const CreateRecipe = (props) => {
     const {user, msgAlert} = props
-    console.log('user in create', user)
+    // console.log('user in create', user)
     const navigate = useNavigate()
     // we'll need two states
     const [recipe, setRecipe] = useState({name: '', description: '', instructions: ''})
-    const [ingredient, setIngredient] = useState({ingredient: ''})
-    console.log('recipe in create', recipe)
+    const [ingredient, setIngredient] = useState({ingredient: '', amount: ''})
+    // console.log('recipe in create', recipe)
   
     const handleChange = (e) => {
         // e === event
@@ -29,8 +29,8 @@ const CreateRecipe = (props) => {
 
             const updatedValue = { [name]: value }
 
-            console.log('prevRecipe', prevRecipe)
-            console.log('updatedValue', updatedValue)
+            // console.log('prevRecipe', prevRecipe)
+            // console.log('updatedValue', updatedValue)
 
             return {...prevRecipe, ...updatedValue}
         })
@@ -43,7 +43,7 @@ const CreateRecipe = (props) => {
         createRecipe(user, recipe)
             // if create is successful, we should navigate to the show page
             .then(res => {navigate(`/recipes/${res.data.recipe.id}`)})
-            
+
             // then we send a success message
             .then(() =>
                 msgAlert({
@@ -71,9 +71,9 @@ const CreateRecipe = (props) => {
 
             const updatedValue = { [name]: value }
 
-            console.log('prevIngredient', prevIngredient)
-            console.log('updatedValue', updatedValue)
-            console.log('what is ingredient.name', ingredient.name)
+            // console.log('prevIngredient', prevIngredient)
+            // console.log('updatedValue', updatedValue)
+            // console.log('what is ingredient.name', ingredient.name)
 
             return {...prevIngredient, ...updatedValue}
         })
@@ -82,10 +82,14 @@ const CreateRecipe = (props) => {
     const handleIngSubmit = (e) => {
         // e === event
         e.preventDefault()
-
-        searchGrocery(ingredient.ingredient)
+        let data 
+        searchIng(ingredient.ingredient)
             // if create is successful, onionsage
-            .then((res) => {console.log('what is res.data', res.data)})
+            .then((res) => {data = res.data})
+            .then(() => {console.log('what is data before 2nd api call', data.results[0])})
+            .then(() => {showIng(data.results[0].id, ingredient.amount)})
+                // .then((res) => {console.log('what is data', data, 'and what is res.data', res)})
+                // .catch(console.error)
             .then(() =>
                 msgAlert({
                     heading: ' Added! Success!',
@@ -114,8 +118,15 @@ const CreateRecipe = (props) => {
             <Form.Label>Ingredient</Form.Label>
                     <Form.Control 
                         placeholder="Add an ingredient"
-                        value= {ingredient.name}
+                        value= {ingredient.ingredient}
                         name='ingredient'
+                        onChange={handleIngChange}
+            />
+            <Form.Label>Amount</Form.Label>
+                    <Form.Control 
+                        placeholder="Amount in oz"
+                        value= {ingredient.amount}
+                        name='amount'
                         onChange={handleIngChange}
             />
             <Button type='submit'>Add to Recipe</Button>

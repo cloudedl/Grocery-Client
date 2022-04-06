@@ -48,12 +48,25 @@ export const showGrocery = (spoonId) => {
     return axios(config)
 }
 
+// SEARCH INGREDIENT in Spoonacular API
 export const searchIng = (query) => {
     const apiKey = env.API_KEY
     const searchUrl = `https://api.spoonacular.com/food/ingredients/search?query=`
     const config = {
         method: 'get',
-        url: `${searchUrl+query}&number=10&apiKey=${apiKey}`
+        url: `${searchUrl+query}&number=1&apiKey=${apiKey}`
+    }
+    return axios(config)
+}
+
+// SHOW INGREDIENT
+export const showIng = (spoonId, amount) => {
+    const apiKey = env.API_KEY
+    const searchUrl = `https://api.spoonacular.com/food/ingredients/${spoonId}/information?amount=${amount}&unit=oz&apiKey=${apiKey}`
+
+    const config = {
+        method: 'get',
+        url: `${searchUrl}`
     }
     return axios(config)
 }
