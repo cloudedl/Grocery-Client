@@ -15,9 +15,9 @@ const authenticatedOptions = (
 		<Nav.Link>
 			<Link to={`/cart/view`} style={linkStyle}>View cart</Link>
 		</Nav.Link>
-		<Nav.Link>
+		{/* <Nav.Link>
 			<Link to={`/cart/checkout`} style={linkStyle}>Checkout</Link>
-		</Nav.Link>
+		</Nav.Link> */}
 		<Nav.Link>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
@@ -44,22 +44,22 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
+		{/* <Nav.Link>
 			<Link to='/' style={linkStyle}>
 				Home
 			</Link>
-		</Nav.Link>
+		</Nav.Link> */}
 
 <Nav.Link>
 	<Link to='/recipe' style={linkStyle}>
 		Recipe Search 
 	</Link>
 </Nav.Link>
-<Nav.Link>
+{/* <Nav.Link>
 	<Link to='/recipe/new' style={linkStyle}>
 		Create Recipe
 	</Link>
-</Nav.Link>
+</Nav.Link> */}
 </>
 )
 
