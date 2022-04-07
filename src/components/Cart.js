@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import {viewCart} from '../api/cart'
+import {removeItem, viewCart,incItem} from '../api/cart'
 import { Form, Container, Button, Card, Link, Row, Col, ListGroup} from 'react-bootstrap'
 import { AiFillDelete,AiFillPlusSquare,AiFillMinusSquare } from "react-icons/ai";
 
@@ -38,16 +38,46 @@ export default function Cart(props) {
                     message: 'Issue with showing recipe',
                     variant: 'danger',
                 })})
-    }, [])
+    }, [cart])
 
     if (!cart) {
         return <p>loading...</p>
     } 
 
+    const handleAddItem = (e,itemId) => {
+        //e === event
+        e.preventDefault()
+
+
+
+    }
+
+
+    const handleDelete = (e,itemId) => {
+        //e === event
+        e.preventDefault()
+
+        removeItem(user,itemId)
+            .then(() => {navigate('/cart/view')})
+            .then(() =>
+            msgAlert({
+                heading: 'Success!',
+                message: 'item removed',
+                variant: 'success',
+            }))
+            // if there is an error, we'll send an error message
+            .catch(() =>
+                msgAlert({
+                    heading: 'Oh No!',
+                    message: 'issue with removing item',
+                    variant: 'danger',
+                }))
+    }
+
+
 
 
     let itemsDisplay
-
 
     if(cart.length>0) {
         itemsDisplay = cart.map( (item,index) => ( 
@@ -64,13 +94,11 @@ export default function Cart(props) {
                     </Col>
 
                     <Col className="item-info">
-                        <Button
-                            type="button"
-                            variant="success"
-                        >
-                            <AiFillPlusSquare fontSize="18px" />
-                        </Button>
-                        
+                        <Form onClick={(e)=>handleAddItem(e,item._id)}>
+                            <Button type="button" variant="success">
+                                <AiFillPlusSquare fontSize="18px" />
+                            </Button>
+                        </Form>
                     </Col>
 
                     <Col className="item-info">
@@ -83,13 +111,11 @@ export default function Cart(props) {
                         
                     </Col>
                     <Col className="item-info">
-                        <Button
-                            type="button"
-                            variant="danger"
-                        >
-                            <AiFillDelete fontSize="18px" />
-                        </Button>
-                        
+                        <Form onClick={(e)=>handleDelete(e,item._id)}>
+                            <Button type="button" variant="danger">
+                                <AiFillDelete fontSize="18px" />
+                            </Button>
+                        </Form>
                     </Col>
                 </Row>
             </ListGroup.Item>
