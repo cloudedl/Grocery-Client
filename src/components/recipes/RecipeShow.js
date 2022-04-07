@@ -126,18 +126,22 @@ const RecipeShow = (props) => {
 
 }
 
+
     const recipeCard = ingArray.map( (ingredient,index) => ( 
 
         <ListGroup.Item
         as="li"
-            className="d-flex justify-content-between align-items-start"
-            >
-                <div className="ms-2 me-auto">
-                    <div className="fw-bold">{ingredient.amount.us.value} {ingredient.amount.us.unit} {ingredient.name}</div>
-                        Price: ${(ingredient.price / 100).toFixed(2)}
-                    </div>
+
+         className="d-flex justify-content-between align-items-start"
+         style = {{backgroundColor: "rgb(255,255,230)"}}
+         >
+             <div className="ms-2 me-auto">
+                  <div className="fw-bold">{ingredient.amount.us.value} {ingredient.amount.us.unit} {ingredient.name}</div>
+                     Price: ${(ingredient.price / 100).toFixed(2)}
+                  </div>
             <Form onClick={(e)=>handleAddIng(e,index)}>         
-                    <Button fluid ="true" type='submit'>Add Item to Cart</Button>
+                 <Button fluid ="true" style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}}type='submit'>Add Item to Cart</Button>
+
             </Form>
         </ListGroup.Item>
 
@@ -179,6 +183,7 @@ const RecipeShow = (props) => {
             <Container >
                 <Row>
                     <Col style = {{
+                backgroundColor: "rgb(255,255,230)",
                 maxHeight: "356px",
                 overflowY: "scroll",
             }}><p><strong>Instructions:</strong> {recipe.instructions.replace(/<ol>|<li>/gi, "")}</p></Col>
