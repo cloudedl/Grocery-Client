@@ -89,7 +89,7 @@ const SignIn = (props) => {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button style ={{marginTop: "2%"}} variant='primary' type='submit'>
+                    <Button style ={{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)", marginTop: "2%"}} variant='primary' type='submit'>
                         Submit
                     </Button>
                 </Form>

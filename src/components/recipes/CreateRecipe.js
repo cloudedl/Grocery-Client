@@ -154,6 +154,7 @@ const CreateRecipe = (props) => {
         <Container style={{
             padding: "10px",
             marginTop: "5%",
+            backgroundColor: "rgb(255,255,230)",
             width: '50%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Times New Roman", 
@@ -189,7 +190,7 @@ const CreateRecipe = (props) => {
                         name='amount'
                         onChange={handleIngChange}
             />
-            <Button style ={{marginTop: "2%"}} type='submit'>Add to Recipe</Button>
+            <Button className = "formButton" style ={{marginTop: "2%", backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}} type='submit'>Add to Recipe</Button>
             </Form>
             </Container>
         </>

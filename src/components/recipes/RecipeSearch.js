@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import "/Users/jonathanzwissler/SEI/projects/project3/Grocery-Client/Grocery-Client/src/components/shared/styles.css"
-
+import "../../index.css"
 
 const RecipeSearch = (props) => {
 
@@ -48,6 +47,7 @@ const RecipeSearch = (props) => {
             width: '50%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Times New Roman", 
+            backgroundColor: "rgb(255,255,230)"
             }}
             className='justify-content-center'>
             <Form onSubmit={handleSubmit}>
@@ -56,7 +56,7 @@ const RecipeSearch = (props) => {
                     name='recipe'
                     onChange={handleChange}
                 />
-            <Button style ={{marginTop: "2%"}} type='submit'>Submit</Button>
+            <Button className = "formButton" style ={{ backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)", marginTop: "2%" }} type='submit'>Submit</Button>
             </Form>
         </Container>
         </div> 
