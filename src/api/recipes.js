@@ -18,7 +18,6 @@ export const searchRecipe = (query) => {
 
 // RANDOM FUNCTION -> Gets Random limited result of recipes
 export const randomRecipe = () => {
-
     const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
     const apiKey = env.API_KEY
     const config = {
@@ -31,7 +30,7 @@ export const randomRecipe = () => {
 // Show Function -> GETs recipe information from external api
 // spoonId === spoonacular's id for the recipe
 export const showRecipe = (spoonId) => {
-    
+
     const apiKey = env.API_KEY
     const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
     const config = {
@@ -51,15 +50,12 @@ export const ingPrice = (spoonId) => {
         method: 'get',
         url: `${searchUrl}`
     }
- 
     return axios(config)
-
 }
-
 
 // POST -> create function
 export const createRecipe = (user, newRecipe) => {
-    console.log('user', user)
+    // console.log('user', user)
     console.log('this is newRecipe', newRecipe)
     return axios({
         url: `${apiUrl}/recipes`,

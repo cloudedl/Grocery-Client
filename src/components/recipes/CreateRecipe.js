@@ -15,11 +15,11 @@ const CreateRecipe = (props) => {
     // console.log('user in create', user)
     const navigate = useNavigate()
     // we'll need two states
-    const [recipe, setRecipe] = useState({name: '', description: '', instructions: ''})
+    const [recipe, setRecipe] = useState({name: '', description: '', ingredientsArr: [], instructions: ''})
     const [ingredient, setIngredient] = useState({ingredient: '', price: '', amount: '' })
-    const [ingredientArr, setingredientArr] = useState(null)
+    const [ingredientsArr, setingredientsArr] = useState([])
     // console.log('recipe in create', recipe)
-  
+
     const handleChange = (e) => {
         // e === event
         e.persist()
@@ -37,14 +37,34 @@ const CreateRecipe = (props) => {
         })
     }
 
+    const handleIngChange = (e) => {
+        // e === event
+        e.persist()
+
+        setIngredient(prevIngredient => {
+            const name = e.target.name
+            let value = e.target.value
+
+            const updatedValue = { [name]: value }
+            
+            // console.log('prevIngredient', prevIngredient)
+            // console.log('updatedValue', updatedValue)
+            // console.log('what is ingredient.name', ingredient.name)
+            
+            return {...prevIngredient, ...updatedValue}
+        })
+    }
+
     const handleSubmit = (e) => {
         // e === event
         e.preventDefault()
 
         createRecipe(user, recipe)
             // if create is successful, we should navigate to the show page
-            .then(res => {navigate(`/recipes/${res.data.recipe.id}`)})
-
+            // .then(res => {
+            //     // console.log('this is the response', res)
+            //     // navigate(`/recipes/${res.data.recipe.id}`)
+            // })
             // then we send a success message
             .then(() =>
                 msgAlert({
@@ -62,24 +82,6 @@ const CreateRecipe = (props) => {
         // console.log('this is the pet', pet)
     }
 
-    const handleIngChange = (e) => {
-        // e === event
-        e.persist()
-
-        setIngredient(prevIngredient => {
-            const name = e.target.name
-            let value = e.target.value
-
-            const updatedValue = { [name]: value }
-
-            // console.log('prevIngredient', prevIngredient)
-            // console.log('updatedValue', updatedValue)
-            // console.log('what is ingredient.name', ingredient.name)
-
-            return {...prevIngredient, ...updatedValue}
-        })
-    }
-
     const handleIngSubmit = (e) => {
         // e === event
         e.preventDefault()
@@ -88,54 +90,67 @@ const CreateRecipe = (props) => {
         // const {name, amount } = ingredientData
         // const { value } = ingredientData.estimatedCost
         
-
+        
         searchIng(ingredient.ingredient)
-            // if create is successful, onionsage
-            .then((res) => {searchData = res.data})
-            .then(() => {console.log('what is data before 2nd api call', searchData.results[0])})
+        // if create is successful, onionsage
+        .then((res) => {searchData = res.data})
+        // .then(() => {console.log('what is data before 2nd api call', searchData.results[0])})
             .then(() => {showIng(searchData.results[0].id, ingredient.amount)
                 .then((res) => {ingredientData = res.data})
                 .then(() => {setIngredient( {ingredient: ingredientData.name, price: ingredientData.estimatedCost.value, amount: ingredientData.amount})
                     console.log('this is ingredient', ingredient)
                 })
-                .then(async() => {
-                    console.log('this is ingredient in the promise right after', ingredient)
-                    await createIngredient(user, ingredient)
-                        // then we send a success message
-                        .then(() =>
-                            msgAlert({
-                                heading: 'Ingredient Added! Success!',
-                                message: createRecipeSuccess,
-                                variant: 'success',
-                            }))
+                .then(() => {
+                    // console.log('this is ingredient in the promise right after', ingredient)
+                     createIngredient(user, ingredient)
+                    // then we send a success message
+                    .then(() =>   {
+                        // console.log('this is ingredient being pushed to recipe.ingredientArr',ingredient),
+                        recipe.ingredientsArr.push(ingredient)
+                        // .then(() => {
+                        //     console.log('this is recipe', recipe)
+                        // })
+                        console.log('this is ingredientsArr', ingredientsArr)
+                    })
+                    .then(() => {
+                        msgAlert({
+                            heading: 'Ingredient Added! Success!',
+                            message: createRecipeSuccess,
+                            variant: 'success',
+                        })
+                    })
+                        // console.log('this is recipe', recipe.ingredientArray),
+                        
                         // if there is an error, we'll send an error message
-                        .catch(() =>
-                            msgAlert({
-                                heading: 'Create ingredient failed!',
-                                message: createRecipeFailure,
-                                variant: 'danger',
-                            }))
+                        .catch((err) => {
+                        console.log('this is err', err)
+                        msgAlert({
+                            heading: 'Create ingredient failed!',
+                            message: createRecipeFailure,
+                            variant: 'danger',
+                        })})
+                        
                 })
                 .catch(console.error)})
-            // .then(() => setIngredient( {ingredient: ingredientData.name, price: ingredientData.estimatedCost.value, amount: ingredientData.amount}))
-            .then(() => {console.log('what is ingredint after updating state', ingredient)})
+                // .then(() => setIngredient( {ingredient: ingredientData.name, price: ingredientData.estimatedCost.value, amount: ingredientData.amount}))
+            // .then(() => {console.log('what is ingredint after updating state', ingredient)})
             .then(() =>
-                msgAlert({
+            msgAlert({
                     heading: ' Added! Success!',
                     message: createRecipeSuccess,
                     variant: 'success',
                 }))
             // if there is an error, we'll send an error message
             .catch(() =>
-                msgAlert({
+            msgAlert({
                     heading: 'Oh No!',
                     message: createRecipeFailure,
                     variant: 'danger',
                 }))
-        // console.log('this is the pet', pet)
-    }
-
-    return (
+                // console.log('this is the pet', pet)
+            }
+            
+            return (
         <>
             <RecipeForm
                 recipe={recipe}
