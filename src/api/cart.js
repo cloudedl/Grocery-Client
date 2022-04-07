@@ -34,3 +34,47 @@ export const viewCart = (user) => {
 } 
 
 
+// DELETE -> remove item from cart
+
+export const removeItem = (user, itemId) => {
+    console.log('user', user)
+    console.log('this is itemId', itemId)
+    return axios({
+        url: `${apiUrl}/item/${itemId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
+
+
+
+// PATCH -> increase item quantity by one 
+
+export const incItem = (user, itemId) => {
+    console.log('user', user)
+    console.log('this is itemId', itemId)
+    return axios({
+        url: `${apiUrl}/item/add/${itemId}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
+
+
+// PATCH -> increase item quantity by one 
+
+export const decItem = (user, itemId) => {
+    console.log('user', user)
+    console.log('this is itemId', itemId)
+    return axios({
+        url: `${apiUrl}/item/sub/${itemId}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
