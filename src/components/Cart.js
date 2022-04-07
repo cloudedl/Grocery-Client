@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import {removeItem, viewCart,incItem,decItem} from '../api/cart'
+import {removeItem, viewCart,incItem,decItem,emptyCart} from '../api/cart'
 import { Form, Container, Button, Card, Link, Row, Col, ListGroup} from 'react-bootstrap'
 import { AiFillDelete,AiFillPlusSquare,AiFillMinusSquare } from "react-icons/ai";
 
@@ -14,10 +14,11 @@ export default function Cart(props) {
     }
     const navigate = useNavigate()
     const [cart,setCart] = useState(null)
-    const [itemsArr,setItemsArr] = useState([])
     const [updated, setUpdated] = useState(false)
     const { user,msgAlert} = props
-    console.log('this is user',user._id)
+    let itemsDisplay
+    let itemsTotal = 0
+
     useEffect(() => {
         viewCart(user)
             .then(res => {
@@ -26,7 +27,6 @@ export default function Cart(props) {
             })
             .then(()=> {
                 setUpdated(false)
-                console.log('this is cart',cart)
             })
             .then(() =>
                 msgAlert({
@@ -78,9 +78,8 @@ export default function Cart(props) {
             .catch(() =>
                 msgAlert({
                     heading: 'Oh No!',
-                    variant: 'danger',
+                    variant: 'danger'
                 }))
-
     }
 
 
@@ -106,11 +105,41 @@ export default function Cart(props) {
     }
 
 
+    
+    const handleEmpty = (e) => {
+        //e === event
+        e.preventDefault()
+
+        emptyCart(user)
+            .then(() => setUpdated(true))
+            .then(() =>
+            msgAlert({
+                heading: 'Success!',
+                message: 'item removed',
+                variant: 'success',
+            }))
+            // if there is an error, we'll send an error message
+            .catch(() =>
+                msgAlert({
+                    heading: 'Oh No!',
+                    message: 'issue with removing item',
+                    variant: 'danger',
+                }))
+    }
+    
 
 
-    let itemsDisplay
 
+
+    // waits for cart to load before running code block
     if(cart.length>0) {
+
+        // loops through the items array to get total
+        for(let i=0;i<cart.length;i++) {
+            itemsTotal+=parseInt(cart[i].price)*parseInt(cart[i].qty)
+        }
+
+        //cart[0].price
         itemsDisplay = cart.map( (item,index) => ( 
             <ListGroup.Item key={item._id}>
                 <Row>
@@ -147,16 +176,8 @@ export default function Cart(props) {
                     </Col>
                 </Row>
             </ListGroup.Item>
-            
-
-            
-    
         ))
-
-
     }
-
-
 
 
     return (
@@ -168,8 +189,10 @@ export default function Cart(props) {
             </div>
             <div className='cart-summary'>
                 <span className='subtotal'>Subtotal {cart.length} items</span>
-                <span style={{fontWeight: 700, fontSize:20}}>Total: </span>
+                <span style={{fontWeight: 700, fontSize:20}}>Total: $ {(itemsTotal/100).toFixed(2)} </span>
                 <Button type="button" disabled={cart.length===0}>Proceed to Checkout</Button>
+                <Button variant="danger" type="button" onClick={handleEmpty} disabled={cart.length===0}>Remove All Items</Button>
+               
             </div>
         </div>
     )
