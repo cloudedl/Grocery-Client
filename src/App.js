@@ -20,6 +20,7 @@ import Cart from './components/Cart'
 import GrocerySearch from './components/groceries/GrocerySearch'
 import GroceryIndex from './components/groceries/GroceryIndex'
 import GroceryShow from './components/groceries/GroceryShow'
+import StripeContainer from './components/stripe/StripeContainer'
 
 const App = () => {
 	// destructure from useState
@@ -198,6 +199,14 @@ const App = () => {
 							user={user}		
 						/>
 					}
+				/>
+				<Route path='/cart/checkout'
+				element={
+				<StripeContainer
+					msgAlert={msgAlert}
+					user={user}
+					/>
+				}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (

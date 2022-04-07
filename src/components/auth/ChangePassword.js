@@ -5,7 +5,7 @@ import { changePassword } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import {Container, Button} from 'react-bootstrap'
 
 const ChangePassword = (props) => {
 	// constructor(props) {
@@ -53,6 +53,13 @@ const ChangePassword = (props) => {
 
 
     return (
+        <Container
+        style={{ 
+            marginTop: "5%",
+            padding: '10px',
+            width: '50%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Times New Roman" }} >
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Change Password</h3>
@@ -79,12 +86,13 @@ const ChangePassword = (props) => {
                             onChange={e => setNewPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button style = {{marginTop : '2%'}} variant='primary' type='submit'>
                         Submit
                     </Button>
                 </Form>
             </div>
         </div>
+    </Container>
     )
 }
 

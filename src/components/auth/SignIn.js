@@ -58,10 +58,12 @@ const SignIn = (props) => {
     return (
     <Container
     style={{ 
+        marginTop: "10%",
+        padding: "10px",
         width: '50%', 
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
         fontFamily: "Times New Roman" }} >
-        <div style = {{padding : "50 px"}} className='row'>
+        <div  className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Sign In</h3>
                 <Form  onSubmit={onSignIn} >
@@ -87,7 +89,7 @@ const SignIn = (props) => {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button  variant='primary' type='submit'>
+                    <Button style ={{marginTop: "2%"}} variant='primary' type='submit'>
                         Submit
                     </Button>
                 </Form>

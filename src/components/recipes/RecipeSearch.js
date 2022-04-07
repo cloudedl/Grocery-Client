@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-
-
+import "/Users/jonathanzwissler/SEI/projects/project3/Grocery-Client/Grocery-Client/src/components/shared/styles.css"
 
 
 const RecipeSearch = (props) => {
@@ -41,7 +40,11 @@ const RecipeSearch = (props) => {
 
 
     return (
+        
+     <div>
         <Container style={{ 
+            marginTop: "10%",
+            padding: "10px",
             width: '50%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Times New Roman", 
@@ -53,9 +56,10 @@ const RecipeSearch = (props) => {
                     name='recipe'
                     onChange={handleChange}
                 />
-            <Button type='submit'>Submit</Button>
+            <Button style ={{marginTop: "2%"}} type='submit'>Submit</Button>
             </Form>
         </Container>
+        </div> 
 
     )
 
