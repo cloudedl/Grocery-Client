@@ -32,7 +32,7 @@ const RecipeForm = (props) => {
                 />
             
                 
-                <Button type='submit'>Submit</Button>
+                <Button style ={{marginTop: "2%"}} type='submit'>Submit</Button>
             </Form>
             
         </Container>

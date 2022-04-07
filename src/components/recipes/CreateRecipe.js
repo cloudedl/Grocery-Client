@@ -151,7 +151,9 @@ const CreateRecipe = (props) => {
             
             return (
         <>
-        <Container style={{ 
+        <Container style={{
+            padding: "10px",
+            marginTop: "5%",
             width: '50%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Times New Roman", 
@@ -164,7 +166,8 @@ const CreateRecipe = (props) => {
             />
             </Container>
             <Container style={{ 
-            padding: "20px",
+            marginTop: "2%",
+            padding: "10px",
             width: '50%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Timses New Roman", 
@@ -186,7 +189,7 @@ const CreateRecipe = (props) => {
                         name='amount'
                         onChange={handleIngChange}
             />
-            <Button type='submit'>Add to Recipe</Button>
+            <Button style ={{marginTop: "2%"}} type='submit'>Add to Recipe</Button>
             </Form>
             </Container>
         </>
