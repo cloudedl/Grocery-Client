@@ -159,19 +159,19 @@ const RecipeShow = (props) => {
             <h3 style ={{textAlign : "center"}}>{recipe.title}</h3>
             <Container>
                 <Row>
-                    <Col><p>Instructions: {recipe.instructions.replace(/<ol>/gi, "")}</p></Col>
+                    <Col><p>Instructions: {recipe.instructions.replace(/<ol>|<li>/gi, "")}</p></Col>
                      <Col><img src= {`${recipe.image}`}></img></Col>
                 </Row>  
             </Container>
-            <ListGroup as="ol" numbered>
-            <div>{recipeCard}</div>
-            </ListGroup>
-          
+            <Container style = {{width: "50%"}}>
+                <ListGroup  as="ol" numbered>
+                 <div>{recipeCard}</div>
+                </ListGroup>
+            </Container>
             <Container className='justify-content-center'>
-                
-            <Form onSubmit={handleAddAll}>
-            <Button type='submit'>Add Recipe to Cart</Button>
-            </Form>
+                <Form onSubmit={handleAddAll}>
+                    <Button type='submit'>Add Recipe to Cart</Button>
+                </Form>
         </Container>
         </>
     )

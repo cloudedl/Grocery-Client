@@ -32,18 +32,18 @@ const SignOut = (props) => {
 		<>
         <Container
     style={{ 
-        width: '50%', 
+        marginTop: "10%",
+        width: '30%', 
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
         fontFamily: "Times New Roman" }} >
             <div className='row'>
                 <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                    <h2>Are you sure you want to sign out?</h2>
-                    <small>We hate to see you go...</small><br/>
-                    <ButtonGroup>
+                    <h3>Confirm Sign Out</h3>
+                    <ButtonGroup style={{padding: "2%"}} >
                         <Button variant='danger' onClick={onSignOut}>
                             Sign Out
                         </Button>
-                        <Button variant='warning' onClick={onCancel}>
+                        <Button variant='primary' onClick={onCancel}>
                             Cancel
                         </Button>
                     </ButtonGroup>
