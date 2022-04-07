@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import {removeItem, viewCart,incItem} from '../api/cart'
+import {removeItem, viewCart,incItem,decItem} from '../api/cart'
 import { Form, Container, Button, Card, Link, Row, Col, ListGroup} from 'react-bootstrap'
 import { AiFillDelete,AiFillPlusSquare,AiFillMinusSquare } from "react-icons/ai";
 
@@ -15,6 +15,7 @@ export default function Cart(props) {
     const navigate = useNavigate()
     const [cart,setCart] = useState(null)
     const [itemsArr,setItemsArr] = useState([])
+    const [updated, setUpdated] = useState(false)
     const { user,msgAlert} = props
     console.log('this is user',user._id)
     useEffect(() => {
@@ -24,6 +25,7 @@ export default function Cart(props) {
                 
             })
             .then(()=> {
+                setUpdated(false)
                 console.log('this is cart',cart)
             })
             .then(() =>
@@ -38,7 +40,7 @@ export default function Cart(props) {
                     message: 'Issue with showing recipe',
                     variant: 'danger',
                 })})
-    }, [cart])
+    }, [updated])
 
     if (!cart) {
         return <p>loading...</p>
@@ -49,12 +51,29 @@ export default function Cart(props) {
         e.preventDefault()
 
         incItem(user,itemId)
-            .then(() => {navigate('/cart/view')})
+            .then(() => setUpdated(true))
             .then(() =>
             msgAlert({
                 heading: 'Success!',
                 variant: 'success',
             }))
+            // if there is an error, we'll send an error message
+            .catch(() =>
+                msgAlert({
+                    heading: 'Oh No!',
+                    variant: 'danger',
+                }))
+
+    }
+    const handleSubItem = (e,itemId) => {
+        //e === event
+        e.preventDefault()
+
+        decItem(user,itemId)
+            .then(() => setUpdated(true))
+            .then(() =>{
+            }
+            )
             // if there is an error, we'll send an error message
             .catch(() =>
                 msgAlert({
@@ -70,7 +89,7 @@ export default function Cart(props) {
         e.preventDefault()
 
         removeItem(user,itemId)
-            .then(() => {navigate('/cart/view')})
+            .then(() => setUpdated(true))
             .then(() =>
             msgAlert({
                 heading: 'Success!',
@@ -112,15 +131,12 @@ export default function Cart(props) {
                             </Button>
                         </Form>
                     </Col>
-
                     <Col className="item-info">
-                        <Button
-                            type="button"
-                            variant="warning"
-                        >
-                            <AiFillMinusSquare fontSize="18px" />
-                        </Button>
-                        
+                        <Form onClick={(e)=>handleSubItem(e,item._id)}>
+                            <Button type="button" variant="warning">
+                                <AiFillMinusSquare fontSize="18px" />
+                            </Button>
+                        </Form>
                     </Col>
                     <Col className="item-info">
                         <Form onClick={(e)=>handleDelete(e,item._id)}>
@@ -139,11 +155,6 @@ export default function Cart(props) {
 
 
     }
-
-
-
-
-
 
 
 
