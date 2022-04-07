@@ -64,7 +64,7 @@ const GroceryShow = (props) => {
                         name='groceryPrice'
                         value={grocery.price}
                     />
-                    <Button type='submit'>Add to Cart</Button>
+                    <Button style ={{marginTop: "2%", backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}} type='submit'>Add to Cart</Button>
                 </Form>
             </Container>
         </>

@@ -55,12 +55,12 @@ const RecipeIndex = (props) => {
         
         recipeCards = results.map(result => (
             <Card 
-            bg={"light"}
-            border = "dark" 
+            border = "light" 
             key={result.id} 
             style={{ width: '20%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-            fontFamily: "Times New Roman" }} 
+            fontFamily: "Times New Roman", 
+            backgroundColor: "rgb(255,255,230)"}} 
             className="m-2">
                 <Card.Img 
                 style = {{rounded : true}} 
@@ -73,8 +73,8 @@ const RecipeIndex = (props) => {
                 <Card.Footer>
                     <Card.Text>
                     <div className="d-grid gap-2">
-                        <Button variant ="primary" size = "sm">
-                        <Link style={{color : "white"}} to={`/recipe/${result.id}`}>View Recipe</Link>
+                        <Button className = "formButton" style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}} size = "sm">
+                        <Link style={{color : "black"}} to={`/recipe/${result.id}`}>View Recipe</Link>
                         </Button>
                      </div>   
                     </Card.Text>

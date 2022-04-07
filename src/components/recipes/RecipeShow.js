@@ -173,7 +173,7 @@ const RecipeShow = (props) => {
             </Container>
             <div style={{textAlign: "center"}}>
                 <Form onSubmit={handleAddAll}>
-                    <Button type='submit'>Add Recipe to Cart</Button>
+                    <Button style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}}type='submit'>Add Recipe to Cart</Button>
                 </Form>
                 </div>
        
