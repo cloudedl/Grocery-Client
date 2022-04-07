@@ -45,7 +45,7 @@ export default function Cart(props) {
     if (!cart) {
         return <p>loading...</p>
     } 
-
+    
     const handleAddItem = (e,itemId) => {
         //e === event
         e.preventDefault()
@@ -129,6 +129,14 @@ export default function Cart(props) {
     
 
 
+    // redirects to checkout page with total price
+    const handleCheckout = (e) => {
+        //e === event
+        e.preventDefault()
+        navigate('/cart/checkout',{state:{itemsTotal}})
+    }
+
+
 
 
     // waits for cart to load before running code block
@@ -190,7 +198,7 @@ export default function Cart(props) {
             <div className='cart-summary'>
                 <span className='subtotal'>Subtotal {cart.length} items</span>
                 <span style={{fontWeight: 700, fontSize:20}}>Total: $ {(itemsTotal/100).toFixed(2)} </span>
-                <Button type="button" disabled={cart.length===0}>Proceed to Checkout</Button>
+                <Button type="button" onClick={handleCheckout} disabled={cart.length===0}>Proceed to Checkout</Button>
                 <Button variant="danger" type="button" onClick={handleEmpty} disabled={cart.length===0}>Remove All Items</Button>
                
             </div>
