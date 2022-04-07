@@ -20,8 +20,6 @@ export const searchRecipe = (query) => {
 // RANDOM FUNCTION -> Gets Random limited result of recipes
 export const randomRecipe = () => {
 
-    const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
-
     const apiKey = env.API_KEY
     const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
     
