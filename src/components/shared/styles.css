@@ -1,0 +1,36 @@
+
+
+.cart-showpage {
+    display: flex;
+}
+
+.cart-summary {
+    background-color: #403634;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 10px;
+    height: 86vh;
+}
+
+.subtotal {
+    font-size: 30px;
+  }
+
+  .items-container {
+    display: flex;
+    width: 90%;
+    padding: 20px;
+    justify-content: space-around;
+  }
+
+  .item-info {
+      align-self: center;
+  }
+
+  .cart-list {
+
+      width: 80%;
+  }

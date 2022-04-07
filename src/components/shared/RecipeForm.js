@@ -4,7 +4,7 @@ import { Form, Container, Button } from 'react-bootstrap'
 const RecipeForm = (props) => {
     
     const {recipe, handleChange, handleSubmit, heading} = props
-        console.log(recipe)
+    //     console.log(recipe)
     return (
         <Container className="justify-content-center">
             <h3>{heading}</h3>
