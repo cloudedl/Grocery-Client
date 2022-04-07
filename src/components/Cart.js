@@ -48,7 +48,19 @@ export default function Cart(props) {
         //e === event
         e.preventDefault()
 
-
+        incItem(user,itemId)
+            .then(() => {navigate('/cart/view')})
+            .then(() =>
+            msgAlert({
+                heading: 'Success!',
+                variant: 'success',
+            }))
+            // if there is an error, we'll send an error message
+            .catch(() =>
+                msgAlert({
+                    heading: 'Oh No!',
+                    variant: 'danger',
+                }))
 
     }
 
