@@ -63,3 +63,18 @@ export const incItem = (user, itemId) => {
         }
     })
 } 
+
+
+// PATCH -> increase item quantity by one 
+
+export const decItem = (user, itemId) => {
+    console.log('user', user)
+    console.log('this is itemId', itemId)
+    return axios({
+        url: `${apiUrl}/item/sub/${itemId}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
