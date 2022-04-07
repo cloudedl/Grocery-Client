@@ -47,12 +47,13 @@ const Home = (props) => {
         // using map() to create an array of random recipe cards
         recipeCards = recipes.map(recipes => (
             <Card 
-                bg={"light"}
-                border = "dark" 
+                // bg={"light"}
+                border = "light" 
                 key={recipes.id} 
                 style={{ width: '20%', 
                 boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-                fontFamily: "Times New Roman" }} 
+                fontFamily: "Times New Roman", 
+                backgroundColor: "rgb(255,255,230)"}} 
                 className="m-2"
             >
                 <Card.Img 
@@ -67,7 +68,7 @@ const Home = (props) => {
                 <Card.Footer>
                     <Card.Text>
                         <div className="d-grid gap-2">
-                            <Button variant ="primary" size = "sm">
+                            <Button style = {{backgroundColor: "rgb(83, 200, 70)", border: "rgb(83, 200, 70)"}} size = "sm">
                                 <Link style={{color : "white"}} to={`/recipe/${recipes.id}`}>View Recipe</Link>
                             </Button>
                         </div>   
@@ -79,14 +80,18 @@ const Home = (props) => {
 
 	return (
 		<>
-			<h2>NutriCart</h2>
-			<strong><em>A revolutionary way to shop</em></strong>
+        <div style = {{
+            backgroundColor : "rgb(254,249, 222)",
+        }}> 
+			<h2 style ={{color: "rgb(83,126,70)"}}>  NutriCart</h2>
+			<strong style ={{color: "rgb(83,126,70)"}}><em>A revolutionary way to shop</em></strong>
 
 			
             <div style={cardContainerLayout}>
                 {recipeCards}
                 
             </div>
+        </div>   
 		</>
 	)
 }

@@ -157,9 +157,12 @@ const RecipeShow = (props) => {
 
             
             <h3 style ={{textAlign : "center"}}>{recipe.title}</h3>
-            <Container>
+            <Container >
                 <Row>
-                    <Col><p>Instructions: {recipe.instructions.replace(/<ol>|<li>/gi, "")}</p></Col>
+                    <Col style = {{
+                maxHeight: "356px",
+                overflowY: "scroll",
+            }}><p><strong>Instructions:</strong> {recipe.instructions.replace(/<ol>|<li>/gi, "")}</p></Col>
                      <Col><img src= {`${recipe.image}`}></img></Col>
                 </Row>  
             </Container>
@@ -168,11 +171,12 @@ const RecipeShow = (props) => {
                  <div>{recipeCard}</div>
                 </ListGroup>
             </Container>
-            <Container className='justify-content-center'>
+            <div style={{textAlign: "center"}}>
                 <Form onSubmit={handleAddAll}>
                     <Button type='submit'>Add Recipe to Cart</Button>
                 </Form>
-        </Container>
+                </div>
+       
         </>
     )
 }
