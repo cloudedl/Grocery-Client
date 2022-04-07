@@ -34,3 +34,18 @@ export const viewCart = (user) => {
 } 
 
 
+// DELETE -> remove item from cart
+
+export const removeItem = (user, itemId) => {
+    console.log('user', user)
+    console.log('this is itemId', itemId)
+    return axios({
+        url: `${apiUrl}/item/${itemId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
+
+
