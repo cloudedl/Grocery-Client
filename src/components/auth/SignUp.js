@@ -6,7 +6,7 @@ import { signUp, signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import {Container, Button} from 'react-bootstrap'
 
 const SignUp = (props) => {
 	// constructor(props) {
@@ -56,6 +56,11 @@ const SignUp = (props) => {
 
 
     return (
+        <Container
+        style={{ 
+            width: '50%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Times New Roman" }} >
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Sign Up</h3>
@@ -99,6 +104,7 @@ const SignUp = (props) => {
                 </Form>
             </div>
         </div>
+    </Container>
     )
 
 }

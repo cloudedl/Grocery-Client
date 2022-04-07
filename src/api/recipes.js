@@ -5,9 +5,10 @@ import env from "react-dotenv"
 // Search Recipe Function -> GETs query results from external api
 export const searchRecipe = (query) => {
     // declare base of url to be referenced later
+    const apiKey = env.API_KEY
     const searchUrl = 'https://api.spoonacular.com/recipes/complexSearch?query='
     // declare api key
-    const apiKey = env.API_KEY
+    
     // set terms for axios
     const config = {
         method: 'get',
@@ -18,8 +19,12 @@ export const searchRecipe = (query) => {
 
 // RANDOM FUNCTION -> Gets Random limited result of recipes
 export const randomRecipe = () => {
+
     const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
+
     const apiKey = env.API_KEY
+    const searchUrl = 'https://api.spoonacular.com/recipes/random?number=10'
+    
     const config = {
         method: 'get', 
         url: `${searchUrl}&apiKey=${apiKey}`
@@ -33,6 +38,7 @@ export const showRecipe = (spoonId) => {
 
     const apiKey = env.API_KEY
     const searchUrl = `https://api.spoonacular.com/recipes/${spoonId}/information?includeNutrition=false&apiKey=${apiKey}`
+    
     const config = {
         method: 'get',
         url: `${searchUrl}`

@@ -61,10 +61,9 @@ const CreateRecipe = (props) => {
 
         createRecipe(user, recipe)
             // if create is successful, we should navigate to the show page
-            // .then(res => {
-            //     // console.log('this is the response', res)
-            //     // navigate(`/recipes/${res.data.recipe.id}`)
-            // })
+
+            .then(res => {navigate(`/recipe/${res.data.recipe._id}`)})
+
             // then we send a success message
             .then(() =>
                 msgAlert({
@@ -152,13 +151,27 @@ const CreateRecipe = (props) => {
             
             return (
         <>
+        <Container style={{ 
+            width: '50%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Times New Roman", 
+            }}>
             <RecipeForm
                 recipe={recipe}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 heading="Add new Recipe!"
             />
+            </Container>
+            <Container style={{ 
+            padding: "20px",
+            width: '50%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Timses New Roman", 
+            }} >
             <Form onSubmit={handleIngSubmit}>
+        
+        
             <Form.Label>Ingredient</Form.Label>
                     <Form.Control 
                         placeholder="Add an ingredient"
@@ -175,6 +188,7 @@ const CreateRecipe = (props) => {
             />
             <Button type='submit'>Add to Recipe</Button>
             </Form>
+            </Container>
         </>
     )
 }
