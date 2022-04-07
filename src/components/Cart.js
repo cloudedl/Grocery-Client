@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import {removeItem, viewCart,incItem,decItem} from '../api/cart'
+import {removeItem, viewCart,incItem,decItem,emptyCart} from '../api/cart'
 import { Form, Container, Button, Card, Link, Row, Col, ListGroup} from 'react-bootstrap'
 import { AiFillDelete,AiFillPlusSquare,AiFillMinusSquare } from "react-icons/ai";
 
@@ -105,6 +105,28 @@ export default function Cart(props) {
     }
 
 
+    
+    const handleEmpty = (e) => {
+        //e === event
+        e.preventDefault()
+
+        emptyCart(user)
+            .then(() => setUpdated(true))
+            .then(() =>
+            msgAlert({
+                heading: 'Success!',
+                message: 'item removed',
+                variant: 'success',
+            }))
+            // if there is an error, we'll send an error message
+            .catch(() =>
+                msgAlert({
+                    heading: 'Oh No!',
+                    message: 'issue with removing item',
+                    variant: 'danger',
+                }))
+    }
+    
 
 
 
@@ -169,6 +191,7 @@ export default function Cart(props) {
                 <span className='subtotal'>Subtotal {cart.length} items</span>
                 <span style={{fontWeight: 700, fontSize:20}}>Total: $ {(itemsTotal/100).toFixed(2)} </span>
                 <Button type="button" disabled={cart.length===0}>Proceed to Checkout</Button>
+                <Button variant="danger" type="button" onClick={handleEmpty} disabled={cart.length===0}>Remove All Items</Button>
                
             </div>
         </div>
