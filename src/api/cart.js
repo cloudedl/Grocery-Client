@@ -19,3 +19,18 @@ export const addItem = (user, newItem) => {
     })
 } 
 
+
+// SHOW -> show items in cart
+
+export const viewCart = (user) => {
+    console.log('user', user)
+    return axios({
+        url: `${apiUrl}/carts/view`,
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
+
+
