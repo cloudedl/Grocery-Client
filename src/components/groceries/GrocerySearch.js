@@ -40,7 +40,8 @@ const GrocerySearch = (props) => {
             padding: "10px",
             width: '50%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-            fontFamily: "Times New Roman" }} 
+            fontFamily: "Times New Roman",
+            backgroundColor: "rgb(255,255,230)" }} 
             className='justify-content-center'>
             <Form onSubmit={handleSubmit}>
                 <Form.Control 
@@ -48,7 +49,7 @@ const GrocerySearch = (props) => {
                     name='grocery'
                     onChange={handleChange}
                 />
-            <Button style ={{marginTop: "2%"}} type='submit'>Submit</Button>
+            <Button style ={{marginTop: "2%", backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}} type='submit'>Submit</Button>
             </Form>
         </Container>
     )
