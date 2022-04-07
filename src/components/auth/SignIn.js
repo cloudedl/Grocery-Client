@@ -6,6 +6,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { Container } from 'react-bootstrap'
 
 const SignIn = (props) => {
 	// constructor(props) {
@@ -55,10 +56,15 @@ const SignIn = (props) => {
 	}
 
     return (
-        <div className='row'>
+    <Container
+    style={{ 
+        width: '50%', 
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+        fontFamily: "Times New Roman" }} >
+        <div style = {{padding : "50 px"}} className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Sign In</h3>
-                <Form onSubmit={onSignIn}>
+                <Form  onSubmit={onSignIn} >
                     <Form.Group controlId='email'>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
@@ -81,13 +87,14 @@ const SignIn = (props) => {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button  variant='primary' type='submit'>
                         Submit
                     </Button>
                 </Form>
             </div>
         </div>
-    )
+    </Container>
+    ) 
 }
 
 export default SignIn

@@ -41,7 +41,12 @@ const RecipeSearch = (props) => {
 
 
     return (
-        <Container className='justify-content-center'>
+        <Container style={{ 
+            width: '50%', 
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            fontFamily: "Times New Roman", 
+            }}
+            className='justify-content-center'>
             <Form onSubmit={handleSubmit}>
                 <Form.Control 
                     placeholder="Search Recipe"

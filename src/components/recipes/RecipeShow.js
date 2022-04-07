@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showRecipe,ingPrice } from '../../api/recipes'
 import {addItem} from '../../api/cart'
-import { Form, Container, Button, Card, Link, Row, Col } from 'react-bootstrap'
+import { Form, Container, Button, Card, Link, Row, Col, ListGroup } from 'react-bootstrap'
 
 
 
@@ -11,6 +11,7 @@ import { Form, Container, Button, Card, Link, Row, Col } from 'react-bootstrap'
 
 const RecipeShow = (props) => {
 
+    // let re = recipe.instructions.replace(/<ol>/gi, " ")
     const navigate = useNavigate()
     const [recipe,setRecipe] = useState(null)
     // ings === ingredients
@@ -132,32 +133,20 @@ const RecipeShow = (props) => {
 
     const recipeCard = ingArray.map( (ingredient,index) => ( 
 
-        <Card 
-            bg={"light"}
-            border = "dark" 
-            key={ingredient.id} 
-            style={{ width: '20%', 
-            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-            fontFamily: "Times New Roman" }} 
-            className="m-2">
+       
 
-                <Card.Body>
-                <Card.Title>{ingredient.amount.us.value} {ingredient.amount.us.unit} {ingredient.name}</Card.Title>
-                <p>Price: ${(ingredient.price / 100).toFixed(2)}</p>
-                </Card.Body>
-                <Card.Footer>
-                    <Card.Text>
-                    
-                    <div className="d-grid gap-2">
-                    <Form onClick={(e)=>handleAddIng(e,index)}>
-                     <Button fluid ="true" type='submit'>Add Item to Cart</Button>
-                     </Form>
-                       
-                     </div>   
-                    </Card.Text>
-                    </Card.Footer>
-                
-            </Card>
+        <ListGroup.Item
+        as="li"
+         className="d-flex justify-content-between align-items-start"
+         >
+             <div className="ms-2 me-auto">
+                  <div className="fw-bold">{ingredient.amount.us.value} {ingredient.amount.us.unit} {ingredient.name}</div>
+                     Price: ${(ingredient.price / 100).toFixed(2)}
+                  </div>
+            <Form onClick={(e)=>handleAddIng(e,index)}>         
+                 <Button fluid ="true" type='submit'>Add Item to Cart</Button>
+            </Form>
+  </ListGroup.Item>
 
     )
 
@@ -170,11 +159,13 @@ const RecipeShow = (props) => {
             <h3 style ={{textAlign : "center"}}>{recipe.title}</h3>
             <Container>
                 <Row>
-                    <Col><p>Instructions: {recipe.instructions}</p></Col>
+                    <Col><p>Instructions: {recipe.instructions.replace(/<ol>/gi, "")}</p></Col>
                      <Col><img src= {`${recipe.image}`}></img></Col>
                 </Row>  
             </Container>
+            <ListGroup as="ol" numbered>
             <div>{recipeCard}</div>
+            </ListGroup>
           
             <Container className='justify-content-center'>
                 
