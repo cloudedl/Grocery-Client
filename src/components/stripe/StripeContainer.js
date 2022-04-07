@@ -12,15 +12,15 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY)
 export default function StripeContainer(props) {
 
   const { state } = useLocation()
-  const [total,setTotal] = useState(state.itemsTotal)
-  console.log('this is total froms state',total)
-
+  const [total,setTotal] = useState(parseInt(state.itemsTotal))
+  console.log('this is total froms state',typeof total)
+  
 
 
 
   return (
     <Elements stripe={stripeTestPromise}>
-        <PaymentForm />
+        <PaymentForm total={total}/>
     </Elements>
   )
 }
