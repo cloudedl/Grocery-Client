@@ -1,3 +1,1 @@
-window.env = {
-  "API_KEY": "11ae82916e134a83b9a162a500f0dc51"
-};
+window.env = {'API_KEY': 'b8a1660fd8464afbb3700da5887afe95'};
