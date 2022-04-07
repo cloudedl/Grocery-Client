@@ -7,7 +7,9 @@ const messages = {
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
 	createRecipeSuccess: 'Created Recipe!',
-	createRecipeFailure: 'Failed to create Recipe'
+	createRecipeFailure: 'Failed to create Recipe',
+	addRecipeToFavorites: 'Succesfully added recipe to favorites',
+	addRecipeToFavoritesFail: 'failed to add recipe to favorites'
 }
 
 module.exports = messages

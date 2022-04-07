@@ -49,6 +49,19 @@ export const removeItem = (user, itemId) => {
 } 
 
 
+// DELETE -> remove ALL items
+
+export const emptyCart = (user) => {
+    console.log('user', user)
+    return axios({
+        url: `${apiUrl}/empty`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
+
 
 // PATCH -> increase item quantity by one 
 
