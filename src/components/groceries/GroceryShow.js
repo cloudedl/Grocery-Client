@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showGrocery } from '../../api/groceries'
-import { Form, Container, Button, Card } from 'react-bootstrap'
+import { Form, Container, Button, Card, Spinner } from 'react-bootstrap'
 
 // declare component
 const GroceryShow = (props) => {
@@ -43,7 +43,9 @@ const GroceryShow = (props) => {
 
     // something to show while grocery is loading
     if (!grocery) {
-        return <p>loading...</p>
+        return <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading</span>
+      </Spinner>
     } 
 
     return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Spinner } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 import { searchRecipe } from '../../api/recipes'
 import {CreateRecipe} from './/CreateRecipe'
@@ -44,7 +44,9 @@ const RecipeIndex = (props) => {
 
 
     if (!results) {
-        return <p>loading...</p>
+        return <p><Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading</span>
+      </Spinner></p>
     } else if (results.length === 0) {
         return <p>No recipes found</p>
     }
@@ -52,7 +54,7 @@ const RecipeIndex = (props) => {
     let recipeCards
 
     if (results.length > 0) {
-        
+        console.log(results)
         recipeCards = results.map(result => (
             <Card 
             border = "light" 

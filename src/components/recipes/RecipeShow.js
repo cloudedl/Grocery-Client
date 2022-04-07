@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showRecipe,ingPrice } from '../../api/recipes'
 import {addItem} from '../../api/cart'
-import { Form, Container, Button, Card, Link, Row, Col, ListGroup } from 'react-bootstrap'
+import { Form, Container, Button, Card, Link, Row, Col, ListGroup, Spinner } from 'react-bootstrap'
+
 
 
 
@@ -11,7 +12,7 @@ import { Form, Container, Button, Card, Link, Row, Col, ListGroup } from 'react-
 
 const RecipeShow = (props) => {
 
-    // let re = recipe.instructions.replace(/<ol>/gi, " ")
+    
     const navigate = useNavigate()
     const [recipe,setRecipe] = useState(null)
     // ings === ingredients
@@ -60,7 +61,9 @@ const RecipeShow = (props) => {
 
 
     if (!recipe) {
-        return <p>loading...</p>
+        return<Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading</span>
+      </Spinner>
     } 
     const handleAddIng = (e,index) => {
         //e === event
@@ -149,7 +152,8 @@ const RecipeShow = (props) => {
     )
 
     )
-
+    
+    let re = recipe.instructions.replace(/<ol>|<li>/g, " ") 
     return (
         <>
 
@@ -161,7 +165,7 @@ const RecipeShow = (props) => {
                 backgroundColor: "rgb(255,255,230)",
                 maxHeight: "356px",
                 overflowY: "scroll",
-            }}><p><strong>Instructions:</strong> {recipe.instructions.replace(/<ol>|<li>/gi, "")}</p></Col>
+            }}><p><strong>Instructions:</strong> {re}</p></Col>
                      <Col><img src= {`${recipe.image}`}></img></Col>
                 </Row>  
             </Container>
