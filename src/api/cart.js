@@ -49,3 +49,17 @@ export const removeItem = (user, itemId) => {
 } 
 
 
+
+// PATCH -> increase item quantity by one 
+
+export const incItem = (user, itemId) => {
+    console.log('user', user)
+    console.log('this is itemId', itemId)
+    return axios({
+        url: `${apiUrl}/item/add/${itemId}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+} 
