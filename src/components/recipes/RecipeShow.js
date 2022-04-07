@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showRecipe,ingPrice } from '../../api/recipes'
 import {addItem} from '../../api/cart'
+import {addToFavorites} from '../../api/recipes'
 import { Form, Container, Button, Card, Link, Row, Col, ListGroup } from 'react-bootstrap'
 
 
@@ -17,7 +18,7 @@ const RecipeShow = (props) => {
     // ings === ingredients
     const [ings,setIngs] = useState(null)
     const [ingArray,setIngArray] = useState([])
-    const { user,msgAlert} = props
+    const { user, msgAlert} = props
     const {id} = useParams()
     console.log("recipe", recipe, "this is the total cost")
    
@@ -125,32 +126,50 @@ const RecipeShow = (props) => {
 
 }
 
-
-    
-   
-   
-    
-
     const recipeCard = ingArray.map( (ingredient,index) => ( 
-
-       
 
         <ListGroup.Item
         as="li"
-         className="d-flex justify-content-between align-items-start"
-         >
-             <div className="ms-2 me-auto">
-                  <div className="fw-bold">{ingredient.amount.us.value} {ingredient.amount.us.unit} {ingredient.name}</div>
-                     Price: ${(ingredient.price / 100).toFixed(2)}
-                  </div>
+            className="d-flex justify-content-between align-items-start"
+            >
+                <div className="ms-2 me-auto">
+                    <div className="fw-bold">{ingredient.amount.us.value} {ingredient.amount.us.unit} {ingredient.name}</div>
+                        Price: ${(ingredient.price / 100).toFixed(2)}
+                    </div>
             <Form onClick={(e)=>handleAddIng(e,index)}>         
-                 <Button fluid ="true" type='submit'>Add Item to Cart</Button>
+                    <Button fluid ="true" type='submit'>Add Item to Cart</Button>
             </Form>
-  </ListGroup.Item>
+        </ListGroup.Item>
 
-    )
+    ))
 
-    )
+    const handleFavorite = (e) => {
+         //e === event
+         e.preventDefault()
+
+         console.log('what is user', user)
+         console.log('what is recipe', recipe)
+         addToFavorites(user, recipe)
+
+         // then we send a success message
+         .then(() =>
+             msgAlert({
+                 heading: 'Recipe Added! Success!',
+                 message: 'Added recipe to favorites',
+                 variant: 'success',
+             }))
+         // if there is an error, we'll send an error message
+         .catch(() =>
+             msgAlert({
+                 heading: 'Oh No!',
+                 message: 'Failed to add to favorites',
+                 variant: 'danger',
+             }))
+     // console.log('this is the pet', pet)
+    }
+    
+
+    
 
     return (
         <>
@@ -174,6 +193,9 @@ const RecipeShow = (props) => {
             <div style={{textAlign: "center"}}>
                 <Form onSubmit={handleAddAll}>
                     <Button style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}}type='submit'>Add Recipe to Cart</Button>
+                </Form>
+                <Form onSubmit={handleFavorite}>
+                    <Button style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}}type='submit'>Add Recipe to Favorites</Button>
                 </Form>
                 </div>
        
