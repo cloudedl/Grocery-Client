@@ -1,6 +1,6 @@
 // import dependencies
 import React, { useState, useEffect } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Spinner } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 import { searchGrocery } from '../../api/groceries'
 
@@ -43,7 +43,9 @@ const GroceryIndex = (props) => {
 
 
     if (!products) {
-        return <p>loading...</p>
+        <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading</span>
+      </Spinner>
     } else if (products.length === 0) {
         return <p>No grocery found</p>
     }
