@@ -42,10 +42,9 @@ const GroceryIndex = (props) => {
 
 
 
+  
     if (!products) {
-        <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading</span>
-      </Spinner>
+        return <p>loading...</p>
     } else if (products.length === 0) {
         return <p>No grocery found</p>
     }

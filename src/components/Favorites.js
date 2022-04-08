@@ -52,7 +52,7 @@ const Favorites = (props) => {
 
     if (results.length > 0) {
         
-        favoritesCards = results.map(result => (
+        favoritesCards = user.favorites.map(result => (
             <Card 
             border = "light" 
             key={result.id} 
