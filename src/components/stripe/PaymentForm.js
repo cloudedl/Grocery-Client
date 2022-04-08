@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import {emptyCart} from '../../api/cart'
+import { AiOutlineCheck } from "react-icons/ai";
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",
@@ -24,7 +26,7 @@ const CARD_OPTIONS = {
 
 export default function PaymentForm(props) {
 
-    const { total} = props
+    const { user, total} = props
     const [stripeTotal, setStripeTotal]=useState(parseInt(total))
     const [success, setSuccess] = useState(false)
     const stripe = useStripe()
@@ -38,7 +40,9 @@ export default function PaymentForm(props) {
             type: "card",
             card: elements.getElement(CardElement)
         })
-        
+        emptyCart(user)
+        .then()
+
 
         if(!error) {
             try {
@@ -71,9 +75,13 @@ export default function PaymentForm(props) {
             <button className='stripe-button'>Pay</button>
         </form>
         
-        :
-        <div>
-            <h2>Order Successful!</h2>
+        :<div className='order-container'>
+            <div className='order-message'>
+                <AiOutlineCheck fill='black' fontSize="60px"/>
+                <h2>Order Successful!</h2>
+                <h5>Confirmation email sent to: {user.email}</h5>
+
+            </div>
         </div>}
     </>
   )
