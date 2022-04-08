@@ -2,12 +2,15 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./styles.css"
 
 const linkStyle = {
     color: "black",
     textDecoration: 'none'
 }
+
+
 const authenticatedOptions = (
 	<>	
 		<Nav.Link>
@@ -17,11 +20,13 @@ const authenticatedOptions = (
 			<Link to={`/grocery`} style={linkStyle}>Search Groceries</Link>
 		</Nav.Link>
 		<Nav.Link>
-			<Link to={`/cart/view`} style={linkStyle}>View Cart</Link>
+
+		<Link to={`/cart/view`} style={linkStyle}><AiOutlineShoppingCart  fontSize="25px"/></Link>
+
 		</Nav.Link>
-		<Nav.Link>
+		{/* <Nav.Link>
 			<Link to={`/cart/checkout`} style={linkStyle}>Checkout</Link>
-		</Nav.Link>
+		</Nav.Link> */}
 		<Nav.Link>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
@@ -48,22 +53,22 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
+		{/* <Nav.Link>
 			<Link to='/' style={linkStyle}>
 				Home
 			</Link>
-		</Nav.Link>
+		</Nav.Link> */}
 
 <Nav.Link>
 	<Link to='/recipe' style={linkStyle}>
 		Recipe Search 
 	</Link>
 </Nav.Link>
-<Nav.Link>
+{/* <Nav.Link>
 	<Link to='/recipe/new' style={linkStyle}>
 		Create Recipe
 	</Link>
-</Nav.Link>
+</Nav.Link> */}
 </>
 )
 

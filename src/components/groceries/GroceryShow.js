@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showGrocery } from '../../api/groceries'
 import { Form, Container, Button, Card } from 'react-bootstrap'
+import {addItem} from '../../api/cart'
 
 // declare component
 const GroceryShow = (props) => {
     // declare variables 
     const navigate = useNavigate()
     const [grocery,setGrocery] = useState(null)
+    const [ings,setIngs] = useState(null)
     const { user,msgAlert} = props
     const {id} = useParams()
     // console log to check what object is currently associated with grocery
@@ -31,6 +33,7 @@ const GroceryShow = (props) => {
                     message: 'Issue with showing grocery',
                     variant: 'danger',
                 })})
+   
     }, [])
     
     // function to handle submit button
@@ -46,6 +49,37 @@ const GroceryShow = (props) => {
         return <p>loading...</p>
     } 
 
+    const handleAddIng = (e,index) => {
+        //e === event
+        e.preventDefault()
+
+
+            let ingObj = {
+                "name":  grocery.title,
+                "price": grocery.price
+            }
+
+            console.log('what is inside ingObj', ingObj)
+        addItem(user,ingObj)
+            .then()
+            .then(() =>
+            msgAlert({
+                heading: 'Success!',
+                message: 'item added',
+                variant: 'success',
+            }))
+            // if there is an error, we'll send an error message
+            .catch(() =>
+                msgAlert({
+                    heading: 'Oh No!',
+                    message: 'issue with add item',
+                    variant: 'danger',
+                }))
+
+
+
+    }
+
     return (
         <>
             <img src={grocery.image}/>
@@ -54,16 +88,7 @@ const GroceryShow = (props) => {
             <aside>Price: ${grocery.price}</aside>
             <Container
             className='justify-content-center'>
-                <Form onSubmit={handleSubmit}>
-                    <input 
-                        type='hidden' name="groceryName" 
-                        value={grocery.title}    
-                    />
-                    <input 
-                        type='hidden'
-                        name='groceryPrice'
-                        value={grocery.price}
-                    />
+                <Form onSubmit={handleAddIng}>
                     <Button style ={{marginTop: "2%", backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}} type='submit'>Add to Cart</Button>
                 </Form>
             </Container>
