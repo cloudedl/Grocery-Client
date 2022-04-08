@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {removeItem, viewCart,incItem,decItem,emptyCart} from '../api/cart'
-import { Form, Container, Button, Card, Link, Row, Col, ListGroup} from 'react-bootstrap'
+import { Form, Container, Button, Card, Link, Row, Col, ListGroup, Spinner} from 'react-bootstrap'
 import { AiFillDelete,AiFillPlusSquare,AiFillMinusSquare } from "react-icons/ai";
 
 export default function Cart(props) {
@@ -37,7 +37,9 @@ export default function Cart(props) {
     }, [updated])
 
     if (!cart) {
-        return <p>loading...</p>
+        return <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading</span>
+      </Spinner>
     } 
     
     const handleAddItem = (e,itemId) => {

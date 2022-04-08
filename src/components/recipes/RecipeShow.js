@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { showRecipe,ingPrice } from '../../api/recipes'
 import {addItem} from '../../api/cart'
+import { Form, Container, Button, Card, Link, Row, Col, ListGroup, Spinner } from 'react-bootstrap'
 import {addToFavorites} from '../../api/recipes'
-import { Form, Container, Button, Card, Link, Row, Col, ListGroup } from 'react-bootstrap'
 
 
 
@@ -12,13 +12,13 @@ import { Form, Container, Button, Card, Link, Row, Col, ListGroup } from 'react-
 
 const RecipeShow = (props) => {
 
-    // let re = recipe.instructions.replace(/<ol>/gi, " ")
+    
     const navigate = useNavigate()
     const [recipe,setRecipe] = useState(null)
     // ings === ingredients
     const [ings,setIngs] = useState(null)
     const [ingArray,setIngArray] = useState([])
-    const { user, msgAlert} = props
+    const { user,msgAlert} = props
     const {id} = useParams()
     console.log("recipe", recipe, "this is the total cost")
    
@@ -61,7 +61,9 @@ const RecipeShow = (props) => {
 
 
     if (!recipe) {
-        return <p>loading...</p>
+        return<Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading</span>
+      </Spinner>
     } 
     const handleAddIng = (e,index) => {
         //e === event
@@ -127,11 +129,14 @@ const RecipeShow = (props) => {
 }
 
 
+    
+
     const recipeCard = ingArray.map( (ingredient,index) => ( 
+
+       
 
         <ListGroup.Item
         as="li"
-
          className="d-flex justify-content-between align-items-start"
          style = {{backgroundColor: "rgb(255,255,230)"}}
          >
@@ -141,40 +146,37 @@ const RecipeShow = (props) => {
                   </div>
             <Form onClick={(e)=>handleAddIng(e,index)}>         
                  <Button fluid ="true" style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}}type='submit'>Add Item to Cart</Button>
-
             </Form>
-        </ListGroup.Item>
+  </ListGroup.Item>
 
     ))
-
     const handleFavorite = (e) => {
-         //e === event
-         e.preventDefault()
+        //e === event
+        e.preventDefault()
 
-         console.log('what is user', user)
-         console.log('what is recipe', recipe)
-         addToFavorites(user, recipe)
+        console.log('what is user', user)
+        console.log('what is recipe', recipe)
+        addToFavorites(user, recipe)
 
-         // then we send a success message
-         .then(() =>
-             msgAlert({
-                 heading: 'Recipe Added! Success!',
-                 message: 'Added recipe to favorites',
-                 variant: 'success',
-             }))
-         // if there is an error, we'll send an error message
-         .catch(() =>
-             msgAlert({
-                 heading: 'Oh No!',
-                 message: 'Failed to add to favorites',
-                 variant: 'danger',
-             }))
-     // console.log('this is the pet', pet)
-    }
+        // then we send a success message
+        .then(() =>
+            msgAlert({
+                heading: 'Recipe Added! Success!',
+                message: 'Added recipe to favorites',
+                variant: 'success',
+            }))
+        // if there is an error, we'll send an error message
+        .catch(() =>
+            msgAlert({
+                heading: 'Oh No!',
+                message: 'Failed to add to favorites',
+                variant: 'danger',
+            }))
+    // console.log('this is the pet', pet)
+   }
     
-
     
-
+    let re = recipe.instructions.replace(/<ol>|<li>/g, " ") 
     return (
         <>
 
@@ -186,7 +188,7 @@ const RecipeShow = (props) => {
                 backgroundColor: "rgb(255,255,230)",
                 maxHeight: "356px",
                 overflowY: "scroll",
-            }}><p><strong>Instructions:</strong> {recipe.instructions.replace(/<ol>|<li>/gi, "")}</p></Col>
+            }}><p><strong>Instructions:</strong> {re}</p></Col>
                      <Col><img src= {`${recipe.image}`}></img></Col>
                 </Row>  
             </Container>

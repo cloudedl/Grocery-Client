@@ -7,7 +7,8 @@ import "./styles.css"
 
 const linkStyle = {
     color: "black",
-    textDecoration: 'none'
+    textDecoration: 'none',
+	marginLeft : "10px"
 }
 
 
@@ -75,7 +76,8 @@ const alwaysOptions = (
 const Header = ({ user }) => (
 	<Navbar 
 	style = {{
-	backgroundColor : "rgb(83, 200, 70)"
+	backgroundColor : "rgb(83, 200, 70)",
+	padding : "0px, 0px, 0px, 20px"
 	}}
 	 variant='dark' expand='md'>
 		<Navbar.Brand>
