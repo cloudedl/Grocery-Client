@@ -23,7 +23,8 @@ code {
 
 #root{
   background-color: rgb(254,249, 222);
-  height: 200vh; 
+  height: 100vh;
+  width: 100vw;
 }
 
   
@@ -58,11 +59,11 @@ code {
 .stripe-button{
 	display: block;
 	font-size: 16px;
-	width: calc(100% - 30px);
+	width: 100%;
 	height: 40px;
 	margin: 40px 15px 0;
-	background-color: #f6a4eb;
-	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #ffb9f6;
+	background-color: #3eada4;
+	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #0e7564;
 	border-radius: 4px;
 	color: #fff;
 	font-weight: 600;
@@ -88,3 +89,25 @@ h1,
 h3 {
 	text-align: center;
 }
+
+.order-message {
+	display: flex;
+	align-items: center;
+	margin: 7%;
+	flex-direction: column;
+	background-color: rgba(33, 209, 165, 0.514);
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.stripe-form-container {
+	position: relative;
+	top: 10%;
+	left: 3%;
+
+	width: 90%;
+}
+
+/* background-color: Transparent;
+background-repeat:no-repeat;
+border: none;  */
