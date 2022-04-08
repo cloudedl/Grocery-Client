@@ -21,14 +21,16 @@ import GrocerySearch from './components/groceries/GrocerySearch'
 import GroceryIndex from './components/groceries/GroceryIndex'
 import GroceryShow from './components/groceries/GroceryShow'
 import StripeContainer from './components/stripe/StripeContainer'
+import Favorites from './components/Favorites'
 
 const App = () => {
 	// destructure from useState
 	const [user, setUser] = useState(null)
   	const [msgAlerts, setMsgAlerts] = useState([])
+	const [favorites, setFavorites] = useState(null)
 	// console logs for testing
   	console.log('user in app', user)
-  	console.log('message alerts', msgAlerts)
+  	console.log('favorites in app', favorites)
 
   	const clearUser = () => {
     	console.log('clear user ran')
@@ -207,6 +209,16 @@ const App = () => {
 					user={user}
 					/>
 				}
+				/>
+				<Route 
+					path='/favorites'
+					element={
+						<Favorites 
+							msgAlert={msgAlert}
+							user={user}
+							favorites={favorites}
+						/>
+					}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (

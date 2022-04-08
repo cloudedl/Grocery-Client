@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./styles.css"
+
 const linkStyle = {
     color: "black",
     textDecoration: 'none'
@@ -11,12 +12,17 @@ const linkStyle = {
 
 
 const authenticatedOptions = (
-	<>
+	<>	
 		<Nav.Link>
-			<Link to={`/grocery`} style={linkStyle}>Search groceries</Link>
+			<Link to={`/favorites`} style={linkStyle}>View Favorites</Link>
 		</Nav.Link>
 		<Nav.Link>
-			<Link to={`/cart/view`} style={linkStyle}><AiOutlineShoppingCart  fontSize="25px"/></Link>
+			<Link to={`/grocery`} style={linkStyle}>Search Groceries</Link>
+		</Nav.Link>
+		<Nav.Link>
+
+		<Link to={`/cart/view`} style={linkStyle}><AiOutlineShoppingCart  fontSize="25px"/></Link>
+
 		</Nav.Link>
 		{/* <Nav.Link>
 			<Link to={`/cart/checkout`} style={linkStyle}>Checkout</Link>
