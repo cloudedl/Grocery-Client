@@ -15,15 +15,15 @@ const Favorites = (props) => {
     // const { state } = useLocation()
     const { user, req } = props
     const [results,setResults] = useState(null)
-    const { favorites, msgAlert} = props
+    const { favorites, msgAlert } = props
     console.log('this is favorites in Favorites.js', favorites)
     console.log('this is user in Favorites.js', user)
 
     useEffect(() => {
-        searchFavorites(user, req)
+        searchFavorites(user)
             .then(res => {
-                setResults(res.data.results)
-                console.log('apiresponse',results)
+                console.log('apiresponse',res.data.fave[0].favorites)
+                setResults(res.data.fave[0].favorites)
             })
             .then(() =>
                 msgAlert({
@@ -52,10 +52,10 @@ const Favorites = (props) => {
 
     if (results.length > 0) {
         
-        favoritesCards = user.favorites.map(result => (
+        favoritesCards = results.map(favorite => (
             <Card 
             border = "light" 
-            key={result.id} 
+            key={favorite.spoonacularId} 
             style={{ width: '20%', 
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             fontFamily: "Times New Roman", 
@@ -65,15 +65,15 @@ const Favorites = (props) => {
                 style = {{rounded : true}} 
                 border = "dark"
                 variant = 'top' 
-                src ={ `${result.image}`}/>
+                src ={ `${favorite.image}`}/>
                 <Card.Body>
-                <Card.Title style={{textAlign : "center"}}>{result.title}</Card.Title>
+                <Card.Title style={{textAlign : "center"}}>{favorite.title}</Card.Title>
                 </Card.Body>
                 <Card.Footer>
                     <Card.Text>
                     <div className="d-grid gap-2">
                         <Button className = "formButton" style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}} size = "sm">
-                        <Link style={{color : "black"}} to={`/favorites/${result.id}`}>View Favorite</Link>
+                        <Link style={{color : "black"}} to={`/recipe/${favorite.spoonacularId}`}>View Favorite</Link>
                         </Button>
                      </div>   
                     </Card.Text>
