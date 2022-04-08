@@ -1,12 +1,12 @@
 # Grocery-Client
 ## MVP
-1. Have Full CRUD for Recipes
+1. Utilize a Recipe API and a Grocery Product Api
 2. Ability to add recipe items to the cart directly from recipe page
 3. Ability to Remove unwanted items from the Cart
 4. Ability to add individual grocery items to the cart outside of recipes list
 5. Ability to Checkout
 6. Navbar functionality to view User, Grocery, and Recipe views
-8. Utilize a Recipe API and a Grocery Product Api
+
 
 ## Stretch
 1. Style it to look professional
