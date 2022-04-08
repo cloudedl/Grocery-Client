@@ -2,18 +2,21 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./styles.css"
 const linkStyle = {
     color: "black",
     textDecoration: 'none'
 }
+
+
 const authenticatedOptions = (
 	<>
 		<Nav.Link>
 			<Link to={`/grocery`} style={linkStyle}>Search groceries</Link>
 		</Nav.Link>
 		<Nav.Link>
-			<Link to={`/cart/view`} style={linkStyle}>View cart</Link>
+			<Link to={`/cart/view`} style={linkStyle}><AiOutlineShoppingCart  fontSize="25px"/></Link>
 		</Nav.Link>
 		{/* <Nav.Link>
 			<Link to={`/cart/checkout`} style={linkStyle}>Checkout</Link>
