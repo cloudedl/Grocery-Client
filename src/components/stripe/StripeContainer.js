@@ -5,22 +5,27 @@ import PaymentForm from './PaymentForm'
 import { useLocation } from 'react-router-dom'
 
 
+
 const PUBLIC_KEY = "pk_test_51KdGMSF7PsZfSFZBQduGyxH2YgPfrHO40gZUTBkJQsuVzzdjDXVhTH0y7yWGbX6mveOzNzoL6LmDJpghkaICSMyg00QCoz8zFf"
 const stripeTestPromise = loadStripe(PUBLIC_KEY)
 
 
 export default function StripeContainer(props) {
-
+  const {user} =props
   const { state } = useLocation()
   const [total,setTotal] = useState(parseInt(state.itemsTotal))
-  console.log('this is total froms state',typeof total)
+  console.log('this is user',user)
   
 
 
 
   return (
-    <Elements stripe={stripeTestPromise}>
-        <PaymentForm total={total}/>
-    </Elements>
+    <div className='stripe-form-container'>
+      <Elements stripe={stripeTestPromise}>
+        <PaymentForm user={user} total={total}/>
+      </Elements>
+
+    </div>
+
   )
 }
