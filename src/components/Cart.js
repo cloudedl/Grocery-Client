@@ -28,16 +28,10 @@ export default function Cart(props) {
             .then(()=> {
                 setUpdated(false)
             })
-            .then(() =>
-                msgAlert({
-                    heading: 'Success!',
-                    message: `recipe show page`,
-                    variant: 'success',
-                }))
             .catch(()=> {
                 msgAlert({
                     heading: 'Oh No!',
-                    message: 'Issue with showing recipe',
+                    message: 'Issue with showing cart',
                     variant: 'danger',
                 })})
     }, [updated])
@@ -91,7 +85,7 @@ export default function Cart(props) {
             .then(() => setUpdated(true))
             .then(() =>
             msgAlert({
-                heading: 'Success!',
+                heading: 'Removed!',
                 message: 'item removed',
                 variant: 'success',
             }))
@@ -115,7 +109,7 @@ export default function Cart(props) {
             .then(() =>
             msgAlert({
                 heading: 'Success!',
-                message: 'item removed',
+                message: 'Cart emptied',
                 variant: 'success',
             }))
             // if there is an error, we'll send an error message
@@ -144,7 +138,7 @@ export default function Cart(props) {
 
         // loops through the items array to get total
         for(let i=0;i<cart.length;i++) {
-            itemsTotal+=parseInt(cart[i].price)*parseInt(cart[i].qty)
+            itemsTotal+=(parseInt(cart[i].price)*parseInt(cart[i].qty))
         }
 
         //cart[0].price
@@ -163,22 +157,22 @@ export default function Cart(props) {
 
                     <Col className="item-info">
                         <Form onClick={(e)=>handleAddItem(e,item._id)}>
-                            <Button type="button" variant="success">
-                                <AiFillPlusSquare fontSize="18px" />
+                            <Button style={{backgroundColor: "Transparent",backgroundRepeat:"no-repeat",border:"none"}}>
+                                <AiFillPlusSquare fill='black' fontSize="25px" />
                             </Button>
                         </Form>
                     </Col>
                     <Col className="item-info">
                         <Form onClick={(e)=>handleSubItem(e,item._id)}>
-                            <Button type="button" variant="warning">
-                                <AiFillMinusSquare fontSize="18px" />
+                            <Button style={{backgroundColor: "Transparent",backgroundRepeat:"no-repeat",border:"none"}}>
+                                <AiFillMinusSquare fill="black" fontSize="25px" />
                             </Button>
                         </Form>
                     </Col>
                     <Col className="item-info">
                         <Form onClick={(e)=>handleDelete(e,item._id)}>
-                            <Button type="button" variant="danger">
-                                <AiFillDelete fontSize="18px" />
+                            <Button style={{backgroundColor: "Transparent",backgroundRepeat:"no-repeat",border:"none"}}>
+                                <AiFillDelete fill="red" fontSize="25px" />
                             </Button>
                         </Form>
                     </Col>
@@ -191,15 +185,16 @@ export default function Cart(props) {
     return (
         <div className='cart-showpage'>
             <div className='items-container'>
+                <p><h1>Cart Summary</h1></p>
                 <ListGroup className="cart-list">
                     {itemsDisplay}
                 </ListGroup>
             </div>
             <div className='cart-summary'>
-                <span className='subtotal'>Subtotal {cart.length} items</span>
+                <span className='subtotal'>Cart: <span style={{fontSize: 35,fontWeight:700}}>{cart.length}</span> {cart.length>1?"items":"item"}</span>
                 <span style={{fontWeight: 700, fontSize:20}}>Total: $ {(itemsTotal/100).toFixed(2)} </span>
-                <Button type="button" onClick={handleCheckout} disabled={cart.length===0}>Proceed to Checkout</Button>
-                <Button variant="danger" type="button" onClick={handleEmpty} disabled={cart.length===0}>Remove All Items</Button>
+                <Button className="checkout-btn" type="button" style={{fontSize:18,fontWeight:700}} onClick={handleCheckout} disabled={cart.length===0}>Proceed to Checkout</Button>
+                <Button className="empty-btn" variant="danger" style={{fontSize:18,fontWeight:700}} type="button" onClick={handleEmpty} disabled={cart.length===0}>Empty Cart</Button>
                
             </div>
         </div>
