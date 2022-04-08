@@ -53,10 +53,11 @@ const GroceryShow = (props) => {
         //e === event
         e.preventDefault()
 
-
+            let correctPrice = grocery.price * 100
+            console.log('what is correct price', correctPrice)
             let ingObj = {
                 "name":  grocery.title,
-                "price": grocery.price
+                "price": correctPrice
             }
 
             console.log('what is inside ingObj', ingObj)
