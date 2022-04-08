@@ -74,10 +74,10 @@ export const createRecipe = (user, newRecipe) => {
 // POST -> Favorites
 export const addToFavorites = (user, newFavorite) => {
     // console.log('user', user)
-    console.log('this is newRecipe', newFavorite)
+    console.log('this is newFavorite', newFavorite)
 
     return axios({
-        url: `${apiUrl}/favorites/${user._id}`,
+        url: `${apiUrl}/favorites`,
         method: 'POST',
         headers: {
             Authorization: `Token token=${user.token}`

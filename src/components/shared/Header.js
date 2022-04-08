@@ -3,17 +3,21 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 import "./styles.css"
+
 const linkStyle = {
     color: "black",
     textDecoration: 'none'
 }
 const authenticatedOptions = (
-	<>
+	<>	
 		<Nav.Link>
-			<Link to={`/grocery`} style={linkStyle}>Search groceries</Link>
+			<Link to={`/favorites`} style={linkStyle}>View Favorites</Link>
 		</Nav.Link>
 		<Nav.Link>
-			<Link to={`/cart/view`} style={linkStyle}>View cart</Link>
+			<Link to={`/grocery`} style={linkStyle}>Search Groceries</Link>
+		</Nav.Link>
+		<Nav.Link>
+			<Link to={`/cart/view`} style={linkStyle}>View Cart</Link>
 		</Nav.Link>
 		<Nav.Link>
 			<Link to={`/cart/checkout`} style={linkStyle}>Checkout</Link>

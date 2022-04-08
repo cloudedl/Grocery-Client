@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
-import { searchFavorites, createFavorites } from '../../api/favorites'
-
-
+import { searchFavorites } from '../api/favorites'
 
 // styling object for favorite cards
 const cardContainerLayout = {
@@ -14,28 +12,29 @@ const cardContainerLayout = {
 
 const Favorites = (props) => {
     // retrieves object data from FavoritesSearch
-    const { state } = useLocation()
+    // const { state } = useLocation()
+    const { user, req } = props
     const [results,setResults] = useState(null)
     const { favorites, msgAlert} = props
-    console.log('this is favorites', favorites)
+    console.log('this is favorites in Favorites.js', favorites)
+    console.log('this is user in Favorites.js', user)
 
     useEffect(() => {
-        searchFavorites()
+        searchFavorites(user, req)
             .then(res => {
                 setResults(res.data.results)
                 console.log('apiresponse',results)
-
             })
             .then(() =>
                 msgAlert({
                     heading: 'Success!',
-                    message: `Search Results for ${state.query.favorites}`,
+                    message: `Favorites shown!`,
                     variant: 'success',
                 }))
             .catch(()=> {
                 msgAlert({
                     heading: 'Oh No!',
-                    message: 'Issue with search result',
+                    message: 'Issue with retrieving favorites',
                     variant: 'danger',
                 })})
     }, [])
@@ -74,7 +73,7 @@ const Favorites = (props) => {
                     <Card.Text>
                     <div className="d-grid gap-2">
                         <Button className = "formButton" style = {{backgroundColor: "rgb(83, 200, 70)" , border: "rgb(83, 200, 70)"}} size = "sm">
-                        <Link style={{color : "black"}} to={`/favorites/${result.id}`}>View Favorites</Link>
+                        <Link style={{color : "black"}} to={`/favorites/${result.id}`}>View Favorite</Link>
                         </Button>
                      </div>   
                     </Card.Text>
@@ -87,7 +86,6 @@ const Favorites = (props) => {
 
     return (
         <>
-            <h3 style={{textAlign : "center", fontFamily: "Times New Roman"}}> Showing results for: {state.query.favorites}</h3>
             <div style={cardContainerLayout}>
                 {favoritesCards}
                 
@@ -96,4 +94,4 @@ const Favorites = (props) => {
     )
 }
 
-export default FavoritesIndex
+export default Favorites
