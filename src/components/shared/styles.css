@@ -7,22 +7,26 @@ body {
 }
 
 .cart-summary {
-    background-color: #403634;
+    background-color: #403634b2;
     color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 15%;
     margin: 10px;
-    height: 86vh;
+    height: 50vh;
+    position: fixed;
+    right: 2%;
 }
 
 .subtotal {
     font-size: 30px;
+
   }
 
   .items-container {
     display: flex;
+    flex-direction: column;
     width: 90%;
     padding: 20px;
     justify-content: space-around;
@@ -30,9 +34,30 @@ body {
 
   .item-info {
       align-self: center;
+      font-size: 18px;
+      font-weight: 600;
   }
 
   .cart-list {
 
       width: 80%;
   }
+  .empty-btn {
+	margin-top: 80px;
+    width: 100px;
+    align-self: center;
+
+}
+
+.checkout-btn {
+	margin-top: 10px;
+    width: 150px;
+    align-self: center;
+}
+
+.item-info-btn {
+    background-color: none;
+    background-repeat:no-repeat;
+    border: none; 
+
+}
