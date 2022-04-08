@@ -41,19 +41,7 @@ const RecipeShow = (props) => {
                     message: 'Issue with showing recipe',
                     variant: 'danger',
                 })})
-        ingPrice(id)
-            .then(res => {
-                setIngs(res.data)
-                setIngArray (res.data.ingredients)
-                console.log('apiresponse',res.data)
 
-            })
-            .catch(()=> {
-                msgAlert({
-                    heading: 'Oh No!',
-                    message: 'Issue with showing recipe',
-                    variant: 'danger',
-                })})
     }, [])
 
     
