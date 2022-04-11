@@ -3,7 +3,7 @@ import axios from 'axios'
 import env from "react-dotenv"
 
 // Search Favorites Function -> GETs query results from localhost
-export const searchFavorites = (user, req) => {
+export const searchFavorites = (user) => {
     // declare api key
     // const apiKey = env.API_KEY
     // declare base of url to be referenced later
